@@ -5,10 +5,9 @@
    secondsToWait = 40;
    XZ = {};
 
-   var loadApp = exports.loadApp = function (options) {
-
+   var loadApp = exports.loadApp = function (callback) {
 	   // Load the page from localhost
-	   Zombie.visit("http://localhost:8443/",
+	   Zombie.visit("https://localhost:8443/",
 			             {debug: true},
 			             function (e, browser) {
 
@@ -21,6 +20,7 @@
 				             // Check frequently to see if the app is loaded, and move forward when it is
 				             var interval = setInterval(
                        function () {
+                         if (browser.window.xcore) {
 									         // add the global objects to our global namespace
 									         enyo = browser.window.enyo;
                            xcore = browser.window.xcore;
@@ -57,7 +57,9 @@
 									         // we really want neither to be run again.
 									         clearInterval(interval);
 									         clearTimeout(timeout);
-							         }, 100); // 100 = check to see if the app is loaded every 0.1 seconds)
+                         callback();
+                         }
+							         }, 100); // 100 = check to see if the app is loaded every 0.1 seconds
 			             });
    };
  }());
