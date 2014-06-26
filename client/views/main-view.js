@@ -13,9 +13,7 @@ enyo.kind({
       name: "header",
       classes: "xcore-header",
       components: [
-        {name: "logo", fit: true, components: [
-          {kind: "enyo.Image", src: "images/logo.png", classes: "logo"}
-        ]},
+				{name: "logo", kind: "XV.Logo"},
         {name: "searchBar", content: "SearchBar", fit: true},
         {name: "userNav", content: "UserNav", fit: true}
       ]
@@ -26,5 +24,9 @@ enyo.kind({
         {content: "Workspace", fit: true}
       ]
     }
-  ]
+  ],
+	setLogoImage: function (url) {
+		this.$.logo.setImage(url);
+		return true;
+	}
 });
