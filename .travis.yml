@@ -1,0 +1,28 @@
+language: node_js
+node_js:
+  - "0.10"
+
+addons:
+  postgresql: "9.3"
+
+install:
+  - "cd ../"
+  - "git clone --recursive git@github.com:pangea/xcore.git"
+  - "mkdir xcore/lib/extensions"
+  - "cp -r xcore-gui xcore/lib/extensions/"
+  - "cd xcore"
+  - "bash scripts/install.sh -ipn"
+
+before_script:
+  - "source ~/.bashrc"
+  - "npm install"
+  - "cd node-datasource"
+  - "npm install"
+  - "mkdir public/javascripts"
+  - "../scripts/xcore build all"
+  - "npm start &"
+  - "sleep 10"
+  - "cd .."
+
+script:
+  - "../scripts/xcore test xcore-gui"
