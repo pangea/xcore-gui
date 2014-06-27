@@ -7,7 +7,7 @@ addons:
 
 install:
   - "cd ../"
-  - "git clone --recursive git@github.com:pangea/xcore.git"
+  - "git clone --recursive https://github.com/pangea/xcore.git"
   - "mkdir xcore/lib/extensions"
   - "cp -r xcore-gui xcore/lib/extensions/"
   - "cd xcore"
