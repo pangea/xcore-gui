@@ -1,8 +1,8 @@
 (function() {
   "use strict";
 
-  var login = require(__dirname + '/lib/login');
-  var assert = require('assert');
+  var login = require(__dirname + '/lib/login'),
+      assert = require('assert');
 
    before(function (done) {
             this.timeout(50000);

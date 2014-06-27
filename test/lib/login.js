@@ -17,7 +17,7 @@
                                                 process.exit(1);
                                               }, secondsToWait * 1000);
 
-				             // Check frequently to see if the app is loaded, and move forward when it is
+				             // Check frequently to see if the app is loaded, and move forward if it is
 				             var interval = setInterval(
                        function () {
                          if (browser.window.xcore) {
