@@ -25,4 +25,4 @@ before_script:
   - "cd .."
 
 script:
-  - "../scripts/xcore test xcore-gui"
+  - "scripts/xcore test xcore-gui"
