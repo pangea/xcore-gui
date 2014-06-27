@@ -5,7 +5,7 @@
 */
 
 enyo.kind({
-  name: "XV.gui",
+  name: "XV.Gui",
   kind: "FittableRows",
   fit: true,
   handlers: {
@@ -15,19 +15,19 @@ enyo.kind({
     {kind: "onyx.Toolbar", name: "header", layoutKind: "FittableHeaderLayout", components: [
       {kind: "XV.Logo", name: "logo"},
       {kind: "XV.Search", name: "search"},
-      {kind: "onyx.Button", name: "userNav", content: "User Nav"},
-      {kind: "onyx.Button", name: "help", content: "Help Link"}
+      {kind: 'onyx.MenuDecorator', name: 'userNav', classes: "user-nav", components: [
+        {content: "User Menu"},
+        {name: 'userMenu', kind: 'onyx.Menu', components: [
+          {content: 'New Tab', value: 'newTab'},
+          {content: 'Preferences', value: 'preferences'},
+          {content: 'Logout', value: 'logout'}
+        ]}
+      ]}
     ]},
     {kind: "FittableColumns", fit: true, components: [
       {kind: "FittableRows", components: [
-        {kind: "onyx.Toolbar", layoutKind: "FittableHeaderLayout", components: [
-          {kind: "FittableColumns", components: [
-             {kind: "FittableRows", style: "width: 50%;", components: [
-               {kind: "onyx.Button", content: "Action 1"}
-             ]}
-           ]
-          }
-        ]}        
+        {kind: "XV.ModuleSelector", name: "moduleSelector"},
+        {name: "SubModule", content: "subModuleList", fit: true}
       ]},
       {kind: "FittableRows", fit: true, components: [
         {kind: "XV.WorkspaceToolbar", name: "workspaceToolbar"},
@@ -44,12 +44,12 @@ enyo.kind({
     // resize after image is loaded
     this.resize();
   },
-  addRightAction: function (action) {
-    this.$.workspaceToolbar.addRightAction(action);
+  addRightWorkspaceToolbarAction: function (action) {
+    this.$.workspaceToolbar.addRightWorkspaceToolbarAction(action);
     return true;
   },
-  addLeftAction: function (action) {
-    this.$.workspaceToolbar.addLeftAction(action);
+  addLeftWorkspaceToolbarAction: function (action) {
+    this.$.workspaceToolbar.addLeftWorkspaceToolbarAction(action);
     return true;
   },
   setLogoImage: function (url) {

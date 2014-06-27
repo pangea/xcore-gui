@@ -4,9 +4,10 @@ enyo.kind({
   components : [{
     kind: "onyx.InputDecorator",
     name: "searchBar", 
-    style: "width: 40%;",
+    classes: "search",
     components: [{
-      kind: "onyx.Input"
+      kind: "onyx.Input",
+      style: "width: 100%;"
     }]
   }]
 });
