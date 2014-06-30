@@ -1,0 +1,184 @@
+/*
+    You can modify the Onyx theme by adding variable and rule overrides to this
+    file.  To enable theming, follow these steps:
+
+    1. In source/package.js, change "$lib/onyx" to "$lib/onyx/source".
+    2. In source/style/package.js, add "style/Theme.less" (this file).
+    3. Add variable and rule overrides below.
+
+    See [https://github.com/enyojs/enyo/wiki/UI-Theming] for more information.
+*/
+
+
+/* Onyx default variable definitions: */
+@import "../../lib/onyx/css/onyx-variables.less";
+
+/* Place your Onyx variable overrides here --------------- */
+/* Background Colors */
+/* ---------------------------------------*/
+@onyx-groupbox-background: #333333;
+@onyx-popup-background: #333333;
+@onyx-toolbar-background: #333333;
+/* ------------------------------------- end variable overrides */
+
+/* Onyx rule definitions: */
+@import "../../lib/onyx/css/onyx-rules.less";
+
+/* Place your Onyx rule overrides here ------------------- */
+@pangea-green: #99cc33;
+@border-grey: #d8d8d8;
+/* This styles the top search input and appends the magnifying glass icon to it */
+.search.onyx-input-decorator {
+  background: #ffffff;
+  position: relative;
+  border-radius: 20px;
+  border: 2px solid @pangea-green;
+  width: 35%;
+  padding-right: 33px;
+  .onyx-input {
+    color: #333333;
+  }
+  &:before {
+    color: @pangea-green;
+    font-size: 39px;
+    right: 0px;
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    display: inline-block;
+    text-decoration: inherit;
+    content: "\f111";
+    position: absolute;
+    right: 0px;
+    top: -4px;
+  }
+  &:after {
+    color: #ffffff;
+    font-size: 20px;
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    display: inline-block;
+    text-decoration: inherit;
+    content: "\f002";
+    position: absolute;
+    right: 6px;
+    top: 5px;
+    transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+  }
+}
+.user-nav.onyx-popup-decorator {
+  .onyx-button {
+    background: none !important;
+    border: none !important;
+    padding: 0px;
+    text-decoration: none;
+    box-shadow: none !important;
+    position: relative;
+    color: #ffffff;
+    &:after {
+      color:#ffffff;
+      font-family:FontAwesome;
+      font-weight:normal;
+      font-style:normal;
+      display:inline-block;
+      text-decoration:inherit;
+      content:"\f0d7";
+      margin: 2px 0 0 4px;
+    }
+    &.active {
+      &:after {
+        content:"\f0d8";
+      }
+    }
+  }
+}
+.white.onyx-toolbar {
+  background: #ffffff;
+  border: 1px solid @border-grey;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  height: 36px;
+}
+.module-picker.onyx-picker-decorator {
+  .onyx-button {
+    background: none !important;
+    border: none !important;
+    padding: 0px;
+    text-decoration: none;
+    box-shadow: none !important;
+    position: relative;
+    color: @pangea-green;
+    font-size: 22px;
+    /* padding: 8px 0 8px 0 !important; */
+    &:active:hover:not([disabled]) {
+      border: none !important;
+    }
+    &:after {
+      color: @pangea-green;
+      font-family:FontAwesome;
+      font-weight:normal;
+      font-style:normal;
+      display:inline-block;
+      text-decoration:inherit;
+      content:"\f0d7";
+      margin: 2px 0 0 4px;
+    }
+    &.active {
+      &:after {
+        content:"\f0d8";
+      }
+    }
+  }
+
+}
+.module-picker.onyx-picker {
+  top: 98px !important;
+}
+.workspace-toolbar.onyx-toolbar {
+  -webkit-box-shadow: 0 20px 25px -20px @border-grey;
+  -moz-box-shadow: 0 20px 25px -20px @border-grey;
+  box-shadow: 0 20px 25px -20px @border-grey;
+  .onyx-button {
+    color: #333333;
+    background: #f6f6f6;
+    border-radius: 0px;
+    border-color: @border-grey;
+
+    &:active:hover:not([disabled]) {
+      background: @border-grey;
+      border-color: #bebebe;      
+    }
+  }
+}
+.onyx-menu {
+  background: #ffffff;
+  border: 1px solid @border-grey;
+  border-radius: 0px !important;
+  box-shadow: none !important;
+  color: #333333;
+  padding: 0px;
+}
+.onyx-menu-item:hover {
+  background: @pangea-green;
+  color: #ffffff;
+}
+.submodule-list.enyo-list {
+  &:hover {
+    cursor: pointer;
+  }
+  .item {
+    color: #333333;
+    padding: 10px 0px 10px 10px;
+    margin-right: 18px;
+    &.selected {
+      color: #ffffff;
+      background: @pangea-green
+    }    
+  }
+}
+/* ----------------------------------------- end rule overrides */
+

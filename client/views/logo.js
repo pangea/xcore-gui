@@ -3,13 +3,9 @@ enyo.kind({
   events: {
     onLogoLoaded: ""
   },
-  components: [{
-    kind: "enyo.Image",
-    classes: "logo",
-    onload: "logoLoaded",    
-    src: "images/logo.png",
-    style: "vertical-align: middle"
-  }],
+  components: [
+    {kind: "enyo.Image", classes: "logo", onload: "logoLoaded", src: "/images/xcore-gui/logo.png", style: "vertical-align: middle"}
+  ],
   logoLoaded: function () {
     this.doLogoLoaded();
   },
