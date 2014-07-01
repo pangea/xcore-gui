@@ -27,7 +27,10 @@
 /* Place your Onyx rule overrides here ------------------- */
 @pangea-green: #99cc33;
 @border-grey: #d8d8d8;
-/* This styles the top search input and appends the magnifying glass icon to it */
+.logo {
+  height: 26px;
+  width: auto;
+} 
 .search.onyx-input-decorator {
   background: #ffffff;
   position: relative;
@@ -173,7 +176,10 @@
   .item {
     color: #333333;
     padding: 10px 0px 10px 10px;
-    margin-right: 18px;
+    margin-right: 10px;
+    &:hover {
+      cursor: pointer;
+    }
     &.selected {
       color: #ffffff;
       background: @pangea-green

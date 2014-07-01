@@ -1,5 +1,7 @@
 enyo.kind({
   name: "XV.SubmoduleList",
+  style: "position: relative;",
+  fit: true,
   events: {
   },
   components: [
@@ -13,7 +15,7 @@ enyo.kind({
     this.inherited(arguments);
     
     this.data = [];
-    for(var i=0;i<20; i++){
+    for(var i=0;i<10; i++){
       this.data.push("Link " + i);
     }
     this.$.submoduleList.setCount(this.data.length);
