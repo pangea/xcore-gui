@@ -57,6 +57,8 @@
 									         // we really want neither to be run again.
 									         clearInterval(interval);
 									         clearTimeout(timeout);
+
+                         // Give controll back to the callback
                          callback();
                          }
 							         }, 100); // 100 = check to see if the app is loaded every 0.1 seconds
