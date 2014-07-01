@@ -9,7 +9,8 @@ enyo.kind({
   kind: "FittableRows",
   fit: true,
   handlers: {
-    onLogoLoaded: "logoLoaded"
+    onLogoLoaded: "logoLoaded",
+    onModuleSelect: "moduleSelected"
   },
   components:[
     {kind: "onyx.Toolbar", name: "header", layoutKind: "FittableHeaderLayout", components: [
@@ -17,18 +18,34 @@ enyo.kind({
       {kind: "XV.Search", name: "search"},
       {kind: "XV.UserNav", name: "userNav"}
     ]},
-    {kind: "FittableColumns", fit: true, components: [
+    {kind: "FittableColumns", components: [
       {kind: "FittableRows", components: [
-        {kind: "XV.ModuleSelector", name: "moduleSelector"},
+        {kind: "XV.ModuleSelector", name: "moduleSelector"}
+      ]},
+      {kind: "FittableRows", fit: true, components: [
+        {kind: "XV.WorkspaceToolbar", name: "workspaceToolbar"}
+      ]}
+    ]},
+    {kind: "FittableColumns", fit: true, components: [
+      {kind: "FittableRows", style: "width: 18%;", components: [
         {kind: "XV.SubmoduleList", name: "submoduleList"}
       ]},
       {kind: "FittableRows", fit: true, components: [
-        {kind: "XV.WorkspaceToolbar", name: "workspaceToolbar"},
         {name: "workspace", content: "Workspace", fit: true},
         {kind: "XV.StatusBar", name: "statusBar"}
       ]}
     ]}
   ],
+  registerModule: function (module) {
+    this.$.moduleSelector.addModuleToPicker(module);
+    return true;
+  },
+  moduleSelected: function (name) {
+    var modules = xCore.getModules(),
+        module = modules[name];
+
+    module.loadSubmoduleList(this.$.submoduleList);
+  },
   rendered: function () {
     this.inherited(arguments);
     this.resize();

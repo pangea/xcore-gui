@@ -81,6 +81,9 @@
     box-shadow: none !important;
     position: relative;
     color: #ffffff;
+    &:hover {
+      cursor: pointer;
+    }
     &:after {
       color:#ffffff;
       font-family:FontAwesome;
@@ -116,7 +119,9 @@
     position: relative;
     color: @pangea-green;
     font-size: 22px;
-    /* padding: 8px 0 8px 0 !important; */
+    &:hover {
+      cursor: pointer;
+    }    
     &:active:hover:not([disabled]) {
       border: none !important;
     }
@@ -139,12 +144,22 @@
 
 }
 .module-picker.onyx-picker {
-  top: 98px !important;
+  top: 106px !important;
+  .onyx-menu-item {
+    box-shadow: none !important;
+    border: 0px !important;
+    color: #333333;
+    &:hover {
+      background: @border-grey;
+      cursor: pointer;
+    }
+    &.selected {
+      background: @pangea-green;
+      color: #ffffff;
+    }
+  }
 }
 .workspace-toolbar.onyx-toolbar {
-  -webkit-box-shadow: 0 20px 25px -20px @border-grey;
-  -moz-box-shadow: 0 20px 25px -20px @border-grey;
-  box-shadow: 0 20px 25px -20px @border-grey;
   .onyx-button {
     color: #333333;
     background: #f6f6f6;
@@ -157,6 +172,9 @@
     }
   }
 }
+#xCore_gui_workspace {
+  box-shadow: rgb(216, 216, 216) 0px 7px 9px -7px inset;
+}
 .onyx-menu {
   background: #ffffff;
   border: 1px solid @border-grey;
@@ -166,6 +184,7 @@
   padding: 0px;
 }
 .onyx-menu-item:hover {
+  cursor: pointer;
   background: @pangea-green;
   color: #ffffff;
 }
