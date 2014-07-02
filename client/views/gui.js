@@ -38,13 +38,13 @@ enyo.kind({
   ],
   create: function() {
     // Check to make sure font awesome hasn't already been loaded
-    var fontAwesome = document.findElementById('font-awesome-css');
+    var fontAwesome = document.getElementById('font-awesome-css');
     if(!fontAwesome) {
       fontAwesome = document.createElement('link');
       fontAwesome.id = 'font-awesome-css';
       fontAwesome.rel = 'stylesheet';
       fontAwesome.href = '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css';
-      document.getElementByTagName('head').item(0).appendChild(fontAwesome);
+      document.getElementsByTagName('head').item(0).appendChild(fontAwesome);
     }
 
     this.inherited(arguments);
