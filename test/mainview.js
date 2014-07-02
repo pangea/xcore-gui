@@ -14,8 +14,8 @@
     });
 
 
-  describe('logo functionality', function (done) {
-    it('can set the logo source url', function (done) {
+  describe('Mainview', function (done) {
+    it('can set the logo image', function (done) {
       xCore.$.mainView.setLogoImage('test-url');
       assertEqual(xcore.$.mainView.$.logo.$.image.getAttribute('src'), 'test-url');
 
