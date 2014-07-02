@@ -10,7 +10,7 @@ enyo.kind({
   fit: true,
   handlers: {
     onLogoLoaded: "logoLoaded",
-    onModuleSelect: "moduleSelected"
+    onExtensionSelect: "extensionSelected"
   },
   components:[
     {kind: "onyx.Toolbar", name: "header", layoutKind: "FittableHeaderLayout", components: [
@@ -20,7 +20,7 @@ enyo.kind({
     ]},
     {kind: "FittableColumns", components: [
       {kind: "FittableRows", components: [
-        {kind: "XV.ModuleSelector", name: "moduleSelector"}
+        {kind: "XV.ExtensionSelector", name: "extensionSelector"}
       ]},
       {kind: "FittableRows", fit: true, components: [
         {kind: "XV.WorkspaceToolbar", name: "workspaceToolbar"}
@@ -28,7 +28,7 @@ enyo.kind({
     ]},
     {kind: "FittableColumns", fit: true, components: [
       {kind: "FittableRows", style: "width: 18%;", components: [
-        {kind: "XV.SubmoduleList", name: "submoduleList"}
+        {kind: "XV.ExtensionSubList", name: "extensionSubList"}
       ]},
       {kind: "FittableRows", fit: true, components: [
         {name: "workspace", content: "Workspace", fit: true},
@@ -38,26 +38,26 @@ enyo.kind({
   ],
   create: function() {
     // Check to make sure font awesome hasn't already been loaded
-    var fontAwesome = document.findElementById('font-awesome-css');
+    var fontAwesome = document.getElementById('font-awesome-css');
     if(!fontAwesome) {
       fontAwesome = document.createElement('link');
       fontAwesome.id = 'font-awesome-css';
       fontAwesome.rel = 'stylesheet';
       fontAwesome.href = '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css';
-      document.getElementByTagName('head').item(0).appendChild(fontAwesome);
+      document.getElementsByTagName('head').item(0).appendChild(fontAwesome);
     }
 
     this.inherited(arguments);
   },
-  registerModule: function (module) {
-    this.$.moduleSelector.addModuleToPicker(module);
+  registerExtension: function (extension) {
+    this.$.extensionSelector.addExtensionToPicker(extension);
     return true;
   },
-  moduleSelected: function (name) {
-    var modules = xCore.getModules(),
-        module = modules[name];
+  extensionSelected: function (name) {
+    var extensions = xCore.getExtensions(),
+        extension = extensions[name];
 
-    module.loadSubmoduleList(this.$.submoduleList);
+    extension.loadExtensionSubList(this.$.extensionSubList);
   },
   rendered: function () {
     this.inherited(arguments);
