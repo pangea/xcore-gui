@@ -50,14 +50,21 @@ enyo.kind({
     this.inherited(arguments);
   },
   registerExtension: function (extension) {
+    var extensions = xCore.getExtensions();
+
     this.$.extensionSelector.addExtensionToPicker(extension);
+    
+    if(Object.keys(extensions).length == 1) {
+      extension.loadSubList(this.$.extensionSubList);
+    }
     return true;
   },
-  extensionSelected: function (name) {
+  extensionSelected: function (inEvent,name) {
     var extensions = xCore.getExtensions(),
         extension = extensions[name];
-
-    extension.loadExtensionSubList(this.$.extensionSubList);
+    
+    this.$.extensionSubList.destroyClientControls();
+    extension.loadSubList(this.$.extensionSubList);
   },
   rendered: function () {
     this.inherited(arguments);
