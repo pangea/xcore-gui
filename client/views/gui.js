@@ -10,7 +10,8 @@ enyo.kind({
   fit: true,
   handlers: {
     onLogoLoaded: "logoLoaded",
-    onExtensionSelect: "extensionSelected"
+    onExtensionSelect: "extensionSelected",
+    onSubListSelect: "subListSelected"
   },
   components:[
     {kind: "onyx.Toolbar", name: "header", layoutKind: "FittableHeaderLayout", components: [
@@ -31,11 +32,13 @@ enyo.kind({
         {kind: "XV.ExtensionSubList", name: "extensionSubList"}
       ]},
       {kind: "FittableRows", fit: true, components: [
-        {name: "workspace", content: "Workspace", fit: true},
+        {kind: "XV.Workspace", name: "workspace"},
         {kind: "XV.StatusBar", name: "statusBar"}
       ]}
     ]}
   ],
+  extensions: null,  
+  currentExtension: null,
   create: function() {
     // Check to make sure font awesome hasn't already been loaded
     var fontAwesome = document.getElementById('font-awesome-css');
@@ -46,25 +49,27 @@ enyo.kind({
       fontAwesome.href = '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css';
       document.getElementsByTagName('head').item(0).appendChild(fontAwesome);
     }
-
     this.inherited(arguments);
   },
   registerExtension: function (extension) {
-    var extensions = xCore.getExtensions();
-
     this.$.extensionSelector.addExtensionToPicker(extension);
-    
-    if(Object.keys(extensions).length == 1) {
+    this.extensions = xCore.getExtensions();
+
+    if(Object.keys(this.extensions).length == 1) {
       extension.loadSubList(this.$.extensionSubList);
+      this.currentExtension = extension;
     }
     return true;
   },
   extensionSelected: function (inEvent,name) {
-    var extensions = xCore.getExtensions(),
-        extension = extensions[name];
+    this.currentExtension = this.extensions[name];
     
     this.$.extensionSubList.destroyClientControls();
-    extension.loadSubList(this.$.extensionSubList);
+    this.currentExtension.loadSubList(this.$.extensionSubList);
+  },
+  subListSelected: function(inEvent, name) {
+    this.$.workspace.destroyClientControls();
+    this.currentExtension.loadWorkspace(this.$.workspace, name);
   },
   rendered: function () {
     this.inherited(arguments);

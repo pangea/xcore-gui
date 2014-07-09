@@ -1,5 +1,8 @@
 enyo.kind({
   name: "XV.ExtensionSelector",
+  handlers: {
+    onSelect: "extensionItemTap"
+  },
   events: {
     onExtensionSelect: ""
   },
@@ -9,7 +12,7 @@ enyo.kind({
         {kind: "FittableRows", components: [
           {kind: "onyx.PickerDecorator", classes: "extension-picker", components: [
             {name: "extensionPickerButton", style: "min-width: 200px;"},
-            {name: "extensionPicker", classes: "extension-picker", kind: "onyx.Picker", count: 0, ontap: "extensionItemTap"}
+            {name: "extensionPicker", classes: "extension-picker", kind: "onyx.Picker", count: 0}
           ]}
         ]}
       ]
@@ -29,6 +32,8 @@ enyo.kind({
     }
   },
   extensionItemTap: function(inSender, inEvent) {
-    this.doExtensionSelect(inEvent.originator.name);
+    if(inEvent.selected.name != inEvent.originator.name) {
+      this.doExtensionSelect(inEvent.originator.name);
+    }
   }
 });

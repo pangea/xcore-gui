@@ -11,7 +11,7 @@
 
 
 /* Onyx default variable definitions: */
-// @import "../../lib/onyx/css/onyx-variables.less";
+/* @import "../../lib/onyx/css/onyx-variables.less"; */
 
 /* Place your Onyx variable overrides here --------------- */
 /* Background Colors */
@@ -22,12 +22,12 @@
 /* ------------------------------------- end variable overrides */
 
 /* Onyx rule definitions: */
-// @import "../../lib/onyx/css/onyx-rules.less";
+/* @import "../../lib/onyx/css/onyx-rules.less"; */
 
 /* Place your Onyx rule overrides here ------------------- */
 @pangea-green: #99cc33;
 @border-grey: #d8d8d8;
-body: {
+body {
   color: #333333;
   font-family: 'Helvetica Neue', 'Nimbus Sans L', Arial, sans-serif;
 }
@@ -207,6 +207,25 @@ body: {
       color: #ffffff;
       background: @pangea-green
     }    
+  }
+}
+.extension-sub-list.enyo-data-list {
+  &:hover {
+    cursor: pointer;
+  }
+  .item {
+    color: #333333;
+    padding: 10px 0px 10px 10px;
+    margin-right: 10px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .selected {
+    .item {
+      color: #ffffff;
+      background: @pangea-green
+    }
   }
 }
 /* ----------------------------------------- end rule overrides */
