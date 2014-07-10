@@ -11,7 +11,8 @@ enyo.kind({
   handlers: {
     onLogoLoaded: "logoLoaded",
     onExtensionSelect: "extensionSelected",
-    onSubListSelect: "subListSelected"
+    onSubListSelect: "subListSelected",
+    onStatusBarItemAdded: 'resizeGui'
   },
   components:[
     {kind: "onyx.Toolbar", name: "header", layoutKind: "FittableHeaderLayout", components: [
@@ -80,6 +81,9 @@ enyo.kind({
     // resize after image is loaded
     this.resize();
   },
+  resizeGui: function() {
+    this.resize();
+  },
   addUserNavAction: function (action) {
     this.$.userNav.addUserNavAction(action);
     return true;
@@ -97,7 +101,7 @@ enyo.kind({
     return true;
   },  
   setLogoImage: function (url) {
-    this.$.logo.setImage(url);n
+    this.$.logo.setImage(url);
     return true;
   },
   addStatusBarAlertAction: function(inEvent, alert) {

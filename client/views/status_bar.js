@@ -1,6 +1,8 @@
 enyo.kind({
   name: "XV.StatusBar",
-  events: {},
+  events: {
+    onStatusBarItemAdded: ''
+  },
   components: [
     {kind: "onyx.Toolbar", layoutKind: "FittableHeaderLayout", components: [
       {kind: "FittableColumns", fit: true, components: [
@@ -12,6 +14,7 @@ enyo.kind({
   addStatusBarIcon: function (action) {
     this.$.icons.createComponent(action);
     this.$.icons.render();
+    this.doStatusBarItemAdded();
   },
   addStatusBarAlertAction: function(inEvent, alert) {
     var type = alert.type,
@@ -19,5 +22,6 @@ enyo.kind({
     alert = this.$.alerts.createComponent({kind: XV.Alert, classes: 'alert ' + type, content: content});
     alert.showAtEvent(inEvent);
     this.$.alerts.render();
+    this.doStatusBarItemAdded();
   }
 });
