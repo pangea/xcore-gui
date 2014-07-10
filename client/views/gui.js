@@ -6,7 +6,7 @@
 
 enyo.kind({
   name: "XV.Gui",
-  kind: "FittableRows",
+  kind: "XV.GuiInterface",
   fit: true,
   handlers: {
     onLogoLoaded: "logoLoaded",
@@ -61,7 +61,7 @@ enyo.kind({
     }
     return true;
   },
-  extensionSelected: function (inEvent,name) {
+  extensionSelected: function (inEvent, name) {
     this.currentExtension = this.extensions[name];
     
     this.$.extensionSubList.destroyClientControls();
@@ -93,6 +93,11 @@ enyo.kind({
   },
   setLogoImage: function (url) {
     this.$.logo.setImage(url);
+    return true;
+  },
+  addStatusBarAlertAction: function(params) {
+    console.log('hellloooo motha fucka');
+    // this.$.statusBar.addStatusBarAlertAction(params);
     return true;
   }
 });

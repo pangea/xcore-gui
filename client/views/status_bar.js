@@ -8,5 +8,9 @@ enyo.kind({
         {kind: "FittableRows", name: "icons", style: "width: 50%;"}
       ]}
     ]}
-  ]
+  ],
+  addStatusBarAlertAction: function(action) {
+    this.$.alerts.createComponent(action);
+    this.$.alerts.render();
+  }
 });
