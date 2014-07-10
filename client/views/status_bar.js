@@ -12,5 +12,12 @@ enyo.kind({
   addStatusBarIcon: function (action) {
     this.$.icons.createComponent(action);
     this.$.icons.render();
+  },
+  addStatusBarAlertAction: function(inEvent, alert) {
+    var type = alert.type,
+        content = alert.content;
+    alert = this.$.alerts.createComponent({kind: XV.Alert, classes: 'alert ' + type, content: content});
+    alert.showAtEvent(inEvent);
+    this.$.alerts.render();
   }
 });
