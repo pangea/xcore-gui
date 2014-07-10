@@ -9,8 +9,11 @@ enyo.kind({
       ]}
     ]}
   ],
-  addStatusBarAlertAction: function(action) {
-    this.$.alerts.createComponent(action);
+  addStatusBarAlertAction: function(inEvent, alert) {
+    var type = alert.type,
+        content = alert.content;
+    alert = this.$.alerts.createComponent({kind: XV.Alert, classes: 'alert ' + type, content: content});
+    alert.showAtEvent(inEvent);
     this.$.alerts.render();
   }
 });

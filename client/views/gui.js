@@ -92,12 +92,11 @@ enyo.kind({
     return true;
   },
   setLogoImage: function (url) {
-    this.$.logo.setImage(url);
+    this.$.logo.setImage(url);n
     return true;
   },
-  addStatusBarAlertAction: function(params) {
-    console.log('hellloooo motha fucka');
-    // this.$.statusBar.addStatusBarAlertAction(params);
+  addStatusBarAlertAction: function(inEvent, alert) {
+    this.$.statusBar.addStatusBarAlertAction(inEvent, alert);
     return true;
   }
 });

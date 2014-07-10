@@ -228,5 +228,25 @@ body {
     }
   }
 }
+.alert {
+  width: 50%;
+  background: #ffffff;
+  color: #000000;
+  text-align: center;
+  &.warning {
+    &:before {
+      display: inline-block;
+      font-size: 39px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      text-decoration: inherit;
+      font-family: FontAwesome;
+      font-weight: normal;
+      font-style: normal;
+      left: 0px;
+      content:"\f071";
+    }
+  }
+}
 /* ----------------------------------------- end rule overrides */
 
