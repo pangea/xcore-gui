@@ -52,18 +52,19 @@ enyo.kind({
     this.inherited(arguments);
   },
   registerExtension: function (extension) {
-    this.$.extensionSelector.addExtensionToPicker(extension);
     this.extensions = xCore.getExtensions();
+    this.$.extensionSelector.addExtensionToPicker(extension);
 
-    if(Object.keys(this.extensions).length == 1) {
-      extension.loadSubList(this.$.extensionSubList);
+    if(Object.keys(this.extensions).length === 1) {
       this.currentExtension = extension;
+      extension.loadSubList(this.$.extensionSubList);
     }
     return true;
   },
   extensionSelected: function (inEvent,name) {
     this.currentExtension = this.extensions[name];
     
+    this.$.workspace.destroyClientControls();
     this.$.extensionSubList.destroyClientControls();
     this.currentExtension.loadSubList(this.$.extensionSubList);
   },
@@ -90,7 +91,11 @@ enyo.kind({
   addLeftWorkspaceToolbarAction: function (action) {
     this.$.workspaceToolbar.addLeftWorkspaceToolbarAction(action);
     return true;
-  },
+  },  
+  addStatusBarIcon: function (action) {
+    this.$.statusBar.addStatusBarIcon(action);
+    return true;
+  },  
   setLogoImage: function (url) {
     this.$.logo.setImage(url);
     return true;
