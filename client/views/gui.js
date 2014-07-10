@@ -97,7 +97,7 @@ enyo.kind({
     return true;
   },  
   setLogoImage: function (url) {
-    this.$.logo.setImage(url);n
+    this.$.logo.setImage(url);
     return true;
   },
   addStatusBarAlertAction: function(inEvent, alert) {
