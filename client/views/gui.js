@@ -11,7 +11,8 @@ enyo.kind({
   handlers: {
     onLogoLoaded: "logoLoaded",
     onExtensionSelect: "extensionSelected",
-    onSubListSelect: "subListSelected"
+    onSubListSelect: "subListSelected",
+    onStatusBarItemAdded: 'resizeGui'
   },
   components:[
     {kind: "onyx.Toolbar", name: "header", layoutKind: "FittableHeaderLayout", components: [
@@ -78,6 +79,9 @@ enyo.kind({
   },
   logoLoaded: function () {
     // resize after image is loaded
+    this.resize();
+  },
+  resizeGui: function() {
     this.resize();
   },
   addUserNavAction: function (action) {
