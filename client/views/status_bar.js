@@ -22,7 +22,9 @@ enyo.kind({
     var type = alert.type,
         content = alert.content,
         title = alert.title ? alert.title : '',
-        icon = alert.icon ? alert.icon : '';
+        icon = alert.icon ? alert.icon : '',
+        duration = alert.duration ? alert.duration : undefined,
+        stay = alert.stay ? alert.stay : true;
 
     this.$.notif.sendNotification({ 
       type: type,
@@ -30,8 +32,8 @@ enyo.kind({
       message: content,
       icon: icon,
       theme: "notification.MessageBar",
-      stay: true,
-      duration: undefined
+      stay: stay,
+      duration: duration
     });
     this.doStatusBarItemAdded();
   }

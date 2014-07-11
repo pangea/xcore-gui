@@ -162,22 +162,6 @@ enyo.kind({
 
 	/**
 	 * Handler for <q>onClose</q> event
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	 * @function
 	 * @name enyo.Notification#notifClose
 	 * @private
