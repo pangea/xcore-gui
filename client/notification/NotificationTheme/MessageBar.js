@@ -145,10 +145,11 @@ enyo.kind({
 
 		//Build the notification
 		var n = this.inShow.notification;
-
+    
+    this.$.bar.addClass(n.type);
 		this.inShow.node = this.$.bar.createComponent({
 			kind: "enyo.Control",
-			classes: "notification-messagebar-notification " + n.type,
+			classes: "notification-messagebar-notification",
 			components: [
 				{kind: "enyo.Control", classes: "notification-messagebar-icon", style:"background-image: url('"+n.icon+"')"},
 				{kind: "enyo.Control", classes: "notification-messagebar-title", content: n.title},
