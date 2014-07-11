@@ -22,16 +22,17 @@ enyo.kind({
     var type = alert.type,
         content = alert.content,
         title = alert.title ? alert.title : '',
-        icon = alert.icon ? alert.icon : '',
+        icon = alert.icon ? alert.icon : undefined,
         duration = alert.duration ? alert.duration : undefined,
-        stay = alert.stay ? alert.stay : true;
+        stay = alert.stay ? alert.stay : true,
+        theme = alert.theme ? alert.theme : 'notification.MessageBar';
 
     this.$.notif.sendNotification({ 
       type: type,
       title: title,
       message: content,
       icon: icon,
-      theme: "notification.MessageBar",
+      theme: theme,
       stay: stay,
       duration: duration
     });
