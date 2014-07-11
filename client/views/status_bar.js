@@ -6,7 +6,7 @@ enyo.kind({
   components: [
     {kind: "onyx.Toolbar", layoutKind: "FittableHeaderLayout", components: [
       {kind: "FittableColumns", fit: true, components: [
-        {kind: "FittableRows", name: "alerts", style: "width: 50%;", components: [
+        {kind: "FittableRows", name: "alerts", classes: "alert", style: "width: 50%;", components: [
           {kind: "Notification", name: "notif"}
         ]},
         {kind: "FittableRows", name: "icons", style: "width: 50%;"}
