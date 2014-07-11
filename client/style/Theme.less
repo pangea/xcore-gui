@@ -113,6 +113,10 @@ body {
   border-right: 0px;
   height: 36px;
 }
+.status-bar.onyx-toolbar {
+  background: #ffffff;
+  border: 0px;
+}
 .extension-picker.onyx-picker-decorator {
   .onyx-button {
     background: none !important;
@@ -276,8 +280,60 @@ body {
 /* } */
 .alert {
   .notification-messagebar-bar {
+    margin-left: -12px;
+    margin-bottom: 0px;
     position: relative;
-    background: transparent;
+    background: none;
+    font-size: 14px !important;
+    .notification-messagebar-title {
+      float: left;
+    }
+    .notification-messagebar-notification {
+      width: 100%;
+      height: auto;
+      padding: 10px 15px 10px 15px;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      color: #31708f;
+      background-color: #d9edf7;
+      border-color: #bce8f1;
+      position: absolute;
+      display: block;
+      box-sizing: content-box;
+    }
+    .notification-messagebar-message{
+      color: #31708f;
+    }
+    &.success {
+      .notification-messagebar-notification {
+        color: #3c763d;
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+      }
+      .notification-messagebar-message{
+        color: #3c763d;      
+      }
+    }
+    &.warning {
+      .notification-messagebar-notification {
+        color: #8a6d3b;
+        background-color: #fcf8e3;
+        border-color: #faebcc;
+      }
+      .notification-messagebar-message{
+        color: #8a6d3b;        
+      }
+    }
+    &.danger {
+      .notification-messagebar-notification {
+        color: #a94442;
+        background-color: #f2dede;
+        border-color: #ebccd1;
+      }
+      .notification-messagebar-message{
+        color: #a94442;
+      }
+    }
   }
 }
 /* ----------------------------------------- end rule overrides */

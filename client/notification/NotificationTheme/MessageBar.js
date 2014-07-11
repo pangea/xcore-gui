@@ -144,19 +144,32 @@ enyo.kind({
 		if(this.pending.length == 0) return;
 
 		//Build the notification
-		var n = this.inShow.notification;
-    
-    this.$.bar.addClass(n.type);
-		this.inShow.node = this.$.bar.createComponent({
-			kind: "enyo.Control",
-			classes: "notification-messagebar-notification",
-			components: [
-				{kind: "enyo.Control", classes: "notification-messagebar-icon", style:"background-image: url('"+n.icon+"')"},
-				{kind: "enyo.Control", classes: "notification-messagebar-title", content: n.title},
-				{kind: "enyo.Control", classes: "notification-messagebar-message", content: n.message}
-			],
-			ontap: "notifTap"
-		}, {owner: this});
+		var n = this.inShow.notification,
+        kind;
+ 
+    if (n.icon == undefined) {
+      kind = {kind: "enyo.Control",
+			        classes: "notification-messagebar-notification",
+			        components: [
+				        {kind: "enyo.Control", classes: "notification-messagebar-title", content: n.title},
+				        {kind: "enyo.Control", classes: "notification-messagebar-message", content: n.message}
+			        ],
+			        ontap: "notifTap"
+		         };
+    } else {
+      kind = {kind: "enyo.Control",
+			        classes: "notification-messagebar-notification",
+			        components: [
+				        {kind: "enyo.Control", classes: "notification-messagebar-icon", style:"background-image: url('"+n.icon+"')"},
+				        {kind: "enyo.Control", classes: "notification-messagebar-title", content: n.title},
+				        {kind: "enyo.Control", classes: "notification-messagebar-message", content: n.message}
+			        ],
+			        ontap: "notifTap"
+		         };
+    }
+ 
+    this.$.bar.addClass(n.type);         
+		this.inShow.node = this.$.bar.createComponent(kind, {owner: this});
 
 		//Set start style (prevent "flashing")
 		this.inShow.node.applyStyle("top", "30px");
