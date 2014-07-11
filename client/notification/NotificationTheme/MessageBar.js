@@ -149,7 +149,7 @@ enyo.kind({
  
     if (n.icon == undefined) {
       kind = {kind: "enyo.Control",
-			        classes: "notification-messagebar-notification",
+			        classes: "notification-messagebar-notification alert " + n.type,
 			        components: [
 				        {kind: "enyo.Control", classes: "notification-messagebar-title", content: n.title},
 				        {kind: "enyo.Control", classes: "notification-messagebar-message", content: n.message}
@@ -158,7 +158,7 @@ enyo.kind({
 		         };
     } else {
       kind = {kind: "enyo.Control",
-			        classes: "notification-messagebar-notification",
+			        classes: "notification-messagebar-notification alert " + n.type,
 			        components: [
 				        {kind: "enyo.Control", classes: "notification-messagebar-icon", style:"background-image: url('"+n.icon+"')"},
 				        {kind: "enyo.Control", classes: "notification-messagebar-title", content: n.title},
@@ -168,7 +168,6 @@ enyo.kind({
 		         };
     }
  
-    this.$.bar.addClass(n.type);         
 		this.inShow.node = this.$.bar.createComponent(kind, {owner: this});
 
 		//Set start style (prevent "flashing")
