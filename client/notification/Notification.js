@@ -114,7 +114,7 @@ enyo.kind({
 		});
 
 		theme.newNotification(notification, this.uid);//Send the notification
-		this.doNotify(notification);//Send a event to inform about this new notification
+		this.doNotify(notification);//send a event to inform about this new notification
 		this.uid++;//Increment uid of notification
 
 		return this.uid-1;
@@ -162,6 +162,22 @@ enyo.kind({
 
 	/**
 	 * Handler for <q>onClose</q> event
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	 * @function
 	 * @name enyo.Notification#notifClose
 	 * @private
@@ -225,3 +241,4 @@ enyo.kind({
 		return result;
 	}
 });
+
