@@ -145,13 +145,14 @@ enyo.kind({
 
 		//Build the notification
 		var n = this.inShow.notification;
+
 		this.inShow.node = this.$.bar.createComponent({
 			kind: "enyo.Control",
-			classes: "notification-messagebar-notification",
+			classes: "notification-messagebar-notification " + n.type,
 			components: [
 				{kind: "enyo.Control", classes: "notification-messagebar-icon", style:"background-image: url('"+n.icon+"')"},
 				{kind: "enyo.Control", classes: "notification-messagebar-title", content: n.title},
-				{kind: "enyo.Control", classes: "notification-messagebar-message", content:n.message}
+				{kind: "enyo.Control", classes: "notification-messagebar-message", content: n.message}
 			],
 			ontap: "notifTap"
 		}, {owner: this});

@@ -20,10 +20,19 @@ enyo.kind({
   },
   addStatusBarAlertAction: function(inEvent, alert) {
     var type = alert.type,
-        content = alert.content;
-    alert = this.$.alerts.createComponent({kind: XV.Alert, classes: 'alert ' + type, content: content});
-    alert.showAtEvent(inEvent);
-    this.$.alerts.render();
+        content = alert.content,
+        title = alert.title ? alert.title : '',
+        icon = alert.icon ? alert.icon : '';
+
+    this.$.notif.sendNotification({ 
+      type: type,
+      title: title,
+      message: content,
+      icon: icon,
+      theme: "notification.MessageBar",
+      stay: true,
+      duration: undefined
+    });
     this.doStatusBarItemAdded();
   }
 });
