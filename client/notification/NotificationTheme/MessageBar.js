@@ -147,26 +147,15 @@ enyo.kind({
 		var n = this.inShow.notification,
         kind;
  
-    if (n.icon == undefined) {
-      kind = {kind: "enyo.Control",
-			        classes: "notification-messagebar-notification alert " + n.type,
-			        components: [
-				        {kind: "enyo.Control", classes: "notification-messagebar-title", content: n.title},
-				        {kind: "enyo.Control", classes: "notification-messagebar-message", content: n.message}
-			        ],
-			        ontap: "notifTap"
-		         };
-    } else {
-      kind = {kind: "enyo.Control",
-			        classes: "notification-messagebar-notification alert " + n.type,
-			        components: [
-				        {kind: "enyo.Control", classes: "notification-messagebar-icon", style:"background-image: url('"+n.icon+"')"},
-				        {kind: "enyo.Control", classes: "notification-messagebar-title", content: n.title},
-				        {kind: "enyo.Control", classes: "notification-messagebar-message", content: n.message}
-			        ],
-			        ontap: "notifTap"
-		         };
-    }
+    kind = {kind: "enyo.Control",
+			      classes: "notification-messagebar-notification alert " + n.type,
+			      components: [
+				      {kind: "enyo.Control", classes: "notification-messagebar-icon", style:"background-image: url('"+n.icon+"')"},
+				      {kind: "enyo.Control", classes: "notification-messagebar-title", content: n.title},
+				      {kind: "enyo.Control", classes: "notification-messagebar-message", content: n.message}
+			      ],
+			      ontap: "notifTap"
+		       };
  
 		this.inShow.node = this.$.bar.createComponent(kind, {owner: this});
 
