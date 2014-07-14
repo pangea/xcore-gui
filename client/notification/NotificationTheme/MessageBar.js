@@ -102,7 +102,7 @@ enyo.kind({
 	components: [
 		{kind: "enyo.Animator", duration: 1000, endValue: 1, onStep: "msgStep", onEnd: "animationEnd", name: "showNotif"},
 		{kind: "enyo.Animator", duration: 1000, startValue: 1, endValue: 0, onStep: "msgStep", onEnd: "animationEnd", name: "hideNotif"},
-		{kind: "enyo.Animator", duration: 1000, endValue: 30, onStep: "barStep", onEnd: "animationEnd", name: "barAnimator"},
+		{kind: "enyo.Animator", duration: 0, endValue: 30, onStep: "barStep", onEnd: "animationEnd", name: "barAnimator"},
 		{kind: "enyo.Control", name: "bar", classes: "notification-messagebar-bar"}
 	],
 
