@@ -232,62 +232,13 @@ body {
     }
   }
 }
-/* .alert { */
-/*   width: 50%; */
-/*   background: #ffffff; */
-/*   color: #000000; */
-/*   text-align: center; */
-/*   position: relative; */
-/*   &:before { */
-/*     display: inline-block; */
-/*     font-size: 30px; */
-/*     text-decoration: inherit; */
-/*     font-family: FontAwesome; */
-/*     padding-top: 5px; */
-/*     padding-right: 15px; */
-/*     font-weight: normal; */
-/*     font-style: normal; */
-/*     left: 0px; */
-/*   } */
-/*   &.warning { */
-/*     background: #EBEF7D; */
-/*     &:before { */
-/*       color: #B0A102; */
-/*       content:"\f071"; */
-/*     } */
-/*   } */
-/*   &.info { */
-/*     background: #92DBE3; */
-/*     &:before { */
-/*       color: #0810C7; */
-/*       content: '\f05a'; */
-/*     } */
-/*   } */
-/*   &.success { */
-/*     background: #9BF49A; */
-/*     &:before { */
-/*       color: #257E02; */
-/*       content: '\f058'; */
-/*     } */
-/*   }   */
-/*   &.cancel { */
-/*     background: #FFAAB2;  */
-/*     &:before { */
-/*       color: #AD0B0B; */
-/*       content: '\f056'; */
-/*     } */
-/*   } */
-/* } */
 .alert {
   .notification-messagebar-bar {
+    bottom: auto !important;
     margin-left: -12px;
-    margin-bottom: 0px;
     position: relative;
     background: none;
     font-size: 14px !important;
-    .notification-messagebar-title {
-      float: left;
-    }
     .notification-messagebar-notification {
       width: 100%;
       height: auto;
@@ -298,43 +249,69 @@ body {
       background-color: #d9edf7;
       border-color: #bce8f1;
       position: absolute;
+      bottom: -10px !important;
+      top: auto !important;
       display: block;
-      box-sizing: content-box;
+      box-sizing: border-box;
+      white-space: normal;
+      .notification-messagebar-icon {
+        width: auto;
+        height: auto;
+        margin: 0px;
+        background-image: none !important;
+        &:before {
+          font-size: 1.5em;
+          font-family: FontAwesome;
+          font-weight: normal;
+          font-style: normal;
+          display: inline-block;
+          text-decoration: inherit;
+          content: "\f05a";
+        }
+      }
+      &.success {
+        color: #3c763d;
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+        .notification-messagebar-message{
+          color: #3c763d;      
+        }
+        .notification-messagebar-icon {
+          &:before {
+            content: "\f058";
+          }
+        }
+      }
+      &.warning {
+        color: #8a6d3b;
+        background-color: #fcf8e3;
+        border-color: #faebcc;
+        .notification-messagebar-message{
+          color: #8a6d3b;        
+        }
+        .notification-messagebar-icon {
+          &:before {
+            content: "\f071";
+          }
+        }
+      }
+      &.danger {
+        color: #a94442;
+        background-color: #f2dede;
+        border-color: #ebccd1;
+        .notification-messagebar-message{
+          color: #a94442;
+        }
+        .notification-messagebar-icon {
+          &:before {
+            content: "\f057";
+          }
+        }
+      }
     }
     .notification-messagebar-message{
       color: #31708f;
     }
-    &.success {
-      .notification-messagebar-notification {
-        color: #3c763d;
-        background-color: #dff0d8;
-        border-color: #d6e9c6;
-      }
-      .notification-messagebar-message{
-        color: #3c763d;      
-      }
-    }
-    &.warning {
-      .notification-messagebar-notification {
-        color: #8a6d3b;
-        background-color: #fcf8e3;
-        border-color: #faebcc;
-      }
-      .notification-messagebar-message{
-        color: #8a6d3b;        
-      }
-    }
-    &.danger {
-      .notification-messagebar-notification {
-        color: #a94442;
-        background-color: #f2dede;
-        border-color: #ebccd1;
-      }
-      .notification-messagebar-message{
-        color: #a94442;
-      }
-    }
   }
 }
 /* ----------------------------------------- end rule overrides */
-

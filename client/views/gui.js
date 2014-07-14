@@ -9,10 +9,11 @@ enyo.kind({
   kind: "XV.GuiInterface",
   fit: true,
   handlers: {
-    onLogoLoaded: "logoLoaded",
+    onLogoLoaded: "resizeGui",
     onExtensionSelect: "extensionSelected",
     onSubListSelect: "subListSelected",
-    onStatusBarItemAdded: 'resizeGui'
+    onStatusBarItemAdded: 'resizeGui',
+    onNotificationRendered: 'resizeGui'
   },
   components:[
     {kind: "onyx.Toolbar", name: "header", layoutKind: "FittableHeaderLayout", components: [
@@ -75,10 +76,6 @@ enyo.kind({
   },
   rendered: function () {
     this.inherited(arguments);
-    this.resize();
-  },
-  logoLoaded: function () {
-    // resize after image is loaded
     this.resize();
   },
   resizeGui: function() {

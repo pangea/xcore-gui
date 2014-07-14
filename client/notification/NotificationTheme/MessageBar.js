@@ -46,7 +46,8 @@ enyo.kind({
 		 * @param {Object} inEvent <tt>inEvent.notification</tt> contains the notification object passed in the <q>newNotification</q> method and <tt>inEvent.uid</tt> the uid
 		 * @see enyojs.com for more information about events
 		 */
-		onClose: ""
+		onClose: "",
+    onNotificationRendered: ""
 	},
 
 	/**
@@ -273,6 +274,7 @@ enyo.kind({
 			}
 		}
 		else if(inSender.name == "barAnimator" && this.pending.length) {//barAnimator and waiting notification = the opening of the bar is ended
+      this.doNotificationRendered();
 			this.inShow = this.pending[0];
 			this.displayNotification();
 		}
