@@ -72,14 +72,19 @@ enyo.kind({
   },
   subListSelected: function(inEvent, name) {
     this.$.workspace.destroyClientControls();
+    this.clearWorkspaceToolbar();
     this.currentExtension.loadWorkspace(this.$.workspace, name);
   },
   rendered: function () {
     this.inherited(arguments);
-    this.resize();
+    this.resized();
+  },
+  logoLoaded: function () {
+    // resize after image is loaded
+    this.resized();
   },
   resizeGui: function() {
-    this.resize();
+    this.resized();
   },
   addUserNavAction: function (action) {
     this.$.userNav.addUserNavAction(action);
@@ -92,7 +97,11 @@ enyo.kind({
   addLeftWorkspaceToolbarAction: function (action) {
     this.$.workspaceToolbar.addLeftWorkspaceToolbarAction(action);
     return true;
-  },  
+  },
+  clearWorkspaceToolbar: function() {
+    this.$.workspaceToolbar.clearWorkspaceToolbar();
+    return true;
+  },
   addStatusBarIcon: function (action) {
     this.$.statusBar.addStatusBarIcon(action);
     return true;

@@ -17,12 +17,20 @@ enyo.kind({
     this.$.leftActionGroup.createComponent(action);
     this.$.leftActionGroup.render();
   },
+  clearWorkspaceToolbar: function() {
+    this.$.rightActionGroup.destroyClientControls();
+    this.$.leftActionGroup.destroyClientControls();
+  },
   workspaceToolbarActionSelected: function (inSender, inEvent) {
     var action = inEvent.originator,
         method;
-
+ 
     if(action.method) {
-      console.log( action.method );
+      if(action.context) {
+        action.context[action.method]();
+      } else {
+        xCore.$.gui.currentExtension[action.method]();
+      }
     }
   }
 });
