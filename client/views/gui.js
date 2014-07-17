@@ -6,11 +6,14 @@
 
 enyo.kind({
   name: "XV.Gui",
-  kind: "FittableRows",
+  kind: "XV.GuiInterface",
   fit: true,
   handlers: {
-    onLogoLoaded: "logoLoaded",
-    onModuleSelect: "moduleSelected"
+    onLogoLoaded: "resizeGui",
+    onExtensionSelect: "extensionSelected",
+    onSubListSelect: "subListSelected",
+    onStatusBarItemAdded: 'resizeGui',
+    onNotificationRendered: 'resizeGui'
   },
   components:[
     {kind: "onyx.Toolbar", name: "header", layoutKind: "FittableHeaderLayout", components: [
@@ -20,7 +23,7 @@ enyo.kind({
     ]},
     {kind: "FittableColumns", components: [
       {kind: "FittableRows", components: [
-        {kind: "XV.ModuleSelector", name: "moduleSelector"}
+        {kind: "XV.ExtensionSelector", name: "extensionSelector"}
       ]},
       {kind: "FittableRows", fit: true, components: [
         {kind: "XV.WorkspaceToolbar", name: "workspaceToolbar"}
@@ -28,14 +31,16 @@ enyo.kind({
     ]},
     {kind: "FittableColumns", fit: true, components: [
       {kind: "FittableRows", style: "width: 18%;", components: [
-        {kind: "XV.SubmoduleList", name: "submoduleList"}
+        {kind: "XV.ExtensionSubList", name: "extensionSubList"}
       ]},
       {kind: "FittableRows", fit: true, components: [
-        {name: "workspace", content: "Workspace", fit: true},
+        {kind: "XV.Workspace", name: "workspace"},
         {kind: "XV.StatusBar", name: "statusBar"}
       ]}
     ]}
   ],
+  extensions: null,  
+  currentExtension: null,
   create: function() {
     // Check to make sure font awesome hasn't already been loaded
     var fontAwesome = document.getElementById('font-awesome-css');
@@ -46,25 +51,34 @@ enyo.kind({
       fontAwesome.href = '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css';
       document.getElementsByTagName('head').item(0).appendChild(fontAwesome);
     }
-
     this.inherited(arguments);
   },
-  registerModule: function (module) {
-    this.$.moduleSelector.addModuleToPicker(module);
+  registerExtension: function (extension) {
+    this.extensions = xCore.getExtensions();
+    this.$.extensionSelector.addExtensionToPicker(extension);
+
+    if(Object.keys(this.extensions).length === 1) {
+      this.currentExtension = extension;
+      extension.loadSubList(this.$.extensionSubList);
+    }
     return true;
   },
-  moduleSelected: function (name) {
-    var modules = xCore.getModules(),
-        module = modules[name];
-
-    module.loadSubmoduleList(this.$.submoduleList);
+  extensionSelected: function (inEvent, name) {
+    this.currentExtension = this.extensions[name];
+    
+    this.$.workspace.destroyClientControls();
+    this.$.extensionSubList.destroyClientControls();
+    this.currentExtension.loadSubList(this.$.extensionSubList);
+  },
+  subListSelected: function(inEvent, name) {
+    this.$.workspace.destroyClientControls();
+    this.currentExtension.loadWorkspace(this.$.workspace, name);
   },
   rendered: function () {
     this.inherited(arguments);
     this.resize();
   },
-  logoLoaded: function () {
-    // resize after image is loaded
+  resizeGui: function() {
     this.resize();
   },
   addUserNavAction: function (action) {
@@ -78,9 +92,17 @@ enyo.kind({
   addLeftWorkspaceToolbarAction: function (action) {
     this.$.workspaceToolbar.addLeftWorkspaceToolbarAction(action);
     return true;
-  },
+  },  
+  addStatusBarIcon: function (action) {
+    this.$.statusBar.addStatusBarIcon(action);
+    return true;
+  },  
   setLogoImage: function (url) {
     this.$.logo.setImage(url);
+    return true;
+  },
+  addStatusBarAlertAction: function(inEvent, alert) {
+    this.$.statusBar.addStatusBarAlertAction(inEvent, alert);
     return true;
   }
 });

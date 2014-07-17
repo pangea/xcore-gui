@@ -11,7 +11,7 @@
 
 
 /* Onyx default variable definitions: */
-// @import "../../lib/onyx/css/onyx-variables.less";
+/* @import "../../lib/onyx/css/onyx-variables.less"; */
 
 /* Place your Onyx variable overrides here --------------- */
 /* Background Colors */
@@ -22,11 +22,15 @@
 /* ------------------------------------- end variable overrides */
 
 /* Onyx rule definitions: */
-// @import "../../lib/onyx/css/onyx-rules.less";
+/* @import "../../lib/onyx/css/onyx-rules.less"; */
 
 /* Place your Onyx rule overrides here ------------------- */
 @pangea-green: #99cc33;
 @border-grey: #d8d8d8;
+body {
+  color: #333333;
+  font-family: 'Helvetica Neue', 'Nimbus Sans L', Arial, sans-serif;
+}
 .logo {
   height: 26px;
   width: auto;
@@ -109,7 +113,11 @@
   border-right: 0px;
   height: 36px;
 }
-.module-picker.onyx-picker-decorator {
+.status-bar.onyx-toolbar {
+  background: #ffffff;
+  border: 0px;
+}
+.extension-picker.onyx-picker-decorator {
   .onyx-button {
     background: none !important;
     border: none !important;
@@ -143,7 +151,7 @@
   }
 
 }
-.module-picker.onyx-picker {
+.extension-picker.onyx-picker {
   top: 106px !important;
   .onyx-menu-item {
     box-shadow: none !important;
@@ -188,7 +196,7 @@
   background: @pangea-green;
   color: #ffffff;
 }
-.submodule-list.enyo-list {
+.extension-sub-list.enyo-list {
   &:hover {
     cursor: pointer;
   }
@@ -205,5 +213,105 @@
     }    
   }
 }
+.extension-sub-list.enyo-data-list {
+  &:hover {
+    cursor: pointer;
+  }
+  .item {
+    color: #333333;
+    padding: 10px 0px 10px 10px;
+    margin-right: 10px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .selected {
+    .item {
+      color: #ffffff;
+      background: @pangea-green
+    }
+  }
+}
+.alert {
+  .notification-messagebar-bar {
+    bottom: auto !important;
+    margin-left: -12px;
+    position: relative;
+    background: none;
+    font-size: 14px !important;
+    .notification-messagebar-notification {
+      width: 100%;
+      height: auto;
+      padding: 10px 15px 10px 15px;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      color: #31708f;
+      background-color: #d9edf7;
+      border-color: #bce8f1;
+      position: absolute;
+      bottom: -10px !important;
+      top: auto !important;
+      display: block;
+      box-sizing: border-box;
+      white-space: normal;
+      .notification-messagebar-icon {
+        width: auto;
+        height: auto;
+        margin: 0px;
+        background-image: none !important;
+        &:before {
+          font-size: 1.5em;
+          font-family: FontAwesome;
+          font-weight: normal;
+          font-style: normal;
+          display: inline-block;
+          text-decoration: inherit;
+          content: "\f05a";
+        }
+      }
+      &.success {
+        color: #3c763d;
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+        .notification-messagebar-message{
+          color: #3c763d;      
+        }
+        .notification-messagebar-icon {
+          &:before {
+            content: "\f058";
+          }
+        }
+      }
+      &.warning {
+        color: #8a6d3b;
+        background-color: #fcf8e3;
+        border-color: #faebcc;
+        .notification-messagebar-message{
+          color: #8a6d3b;        
+        }
+        .notification-messagebar-icon {
+          &:before {
+            content: "\f071";
+          }
+        }
+      }
+      &.danger {
+        color: #a94442;
+        background-color: #f2dede;
+        border-color: #ebccd1;
+        .notification-messagebar-message{
+          color: #a94442;
+        }
+        .notification-messagebar-icon {
+          &:before {
+            content: "\f057";
+          }
+        }
+      }
+    }
+    .notification-messagebar-message{
+      color: #31708f;
+    }
+  }
+}
 /* ----------------------------------------- end rule overrides */
-
