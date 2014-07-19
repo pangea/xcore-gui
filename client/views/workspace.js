@@ -4,5 +4,10 @@ enyo.kind({
   fit: true,
   events: {
   },
+	handlers: {
+		onChangeWorkspace: function(inSender, inEvent) {
+			console.log("Caught it");
+		}
+	},
   components: []  
 });

@@ -13,7 +13,8 @@ enyo.kind({
     onExtensionSelect: "extensionSelected",
     onSubListSelect: "subListSelected",
     onStatusBarItemAdded: 'resizeGui',
-    onNotificationRendered: 'resizeGui'
+    onNotificationRendered: 'resizeGui',
+		onStatusAlert: "addStatusBarAlertAction"
   },
   components:[
     {kind: "onyx.Toolbar", name: "header", layoutKind: "FittableHeaderLayout", components: [
