@@ -1,6 +1,5 @@
 enyo.depends(
   "gui_interface.js",
-  "alert.js",
   "gui.js",
   "logo.js",
   "search.js",
