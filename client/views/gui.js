@@ -99,6 +99,10 @@ enyo.kind({
     this.$.workspaceToolbar.addLeftWorkspaceToolbarAction(action);
     return true;
   },
+  addCenterWorkspaceToolbarAction: function (action) {
+    this.$.workspaceToolbar.addCenterWorkspaceToolbarAction(action);
+    return true;
+  },
   clearWorkspaceToolbar: function() {
     this.$.workspaceToolbar.clearWorkspaceToolbar();
     return true;
