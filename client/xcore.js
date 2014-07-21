@@ -1,8 +1,8 @@
 (function() {
   "use strict";
+  enyo.store.addSources({localStorage: 'b3.localStorageSource'});
 
   enyo.ready(function() {
-    enyo.store.addSources({localStorage: 'b3.localStorageSource'});
     xCore.registerGui('XV.Gui');
   });
 }());
