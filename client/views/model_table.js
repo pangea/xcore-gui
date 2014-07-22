@@ -52,7 +52,10 @@ enyo.kind({
 								kind: 'onyx.Input',
                 name: key,
 								value: value,
-                disabled: !editMode
+                disabled: !editMode,
+                attributes: {
+                  name: key
+                }
 							}]
 						}
 					]}
