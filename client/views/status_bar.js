@@ -3,6 +3,9 @@ enyo.kind({
   events: {
     onStatusBarItemAdded: ''
   },
+	getNotification: function () {
+		return this.$.notif;
+	},
   components: [
     {kind: "onyx.Toolbar", classes: "status-bar", layoutKind: "FittableHeaderLayout", components: [
       {kind: "FittableColumns", fit: true, components: [
