@@ -117,6 +117,9 @@ body {
   background: #ffffff;
   border: 0px;
 }
+.extension-picker.onyx-menu {
+  border: 1px solid #a5a5a5;
+}
 .extension-picker.onyx-picker-decorator {
   .onyx-button {
     background: none !important;
@@ -158,12 +161,35 @@ body {
     border: 0px !important;
     color: #333333;
     &:hover {
-      background: @border-grey;
+      background: #ffffff;
       cursor: pointer;
+      &:before {
+        color: #a5a5a5;
+        font-size: 20px;
+        font-family: FontAwesome;
+        font-weight: normal;
+        font-style: normal;
+        display: inline-block;
+        text-decoration: inherit;
+        content: "\f142";
+        position: absolute;
+        left: 10px;
+      }
     }
     &.selected {
-      background: @pangea-green;
-      color: #ffffff;
+      background: #ffffff;
+      &:before {
+        color: @pangea-green;
+        font-size: 20px;
+        font-family: FontAwesome;
+        font-weight: normal;
+        font-style: normal;
+        display: inline-block;
+        text-decoration: inherit;
+        content: "\f142";
+        position: absolute;
+        left: 10px;
+      }
     }
   }
 }
@@ -203,7 +229,6 @@ body {
   .item {
     color: #333333;
     padding: 10px 0px 10px 10px;
-    margin-right: 10px;
     &:hover {
       cursor: pointer;
     }
@@ -220,7 +245,6 @@ body {
   .item {
     color: #333333;
     padding: 10px 0px 10px 10px;
-    margin-right: 10px;
     &:hover {
       cursor: pointer;
     }
@@ -350,7 +374,7 @@ body {
 .extension-sub-list.enyo-scroller {
   height: 100%;
   .enyo-node {
-    padding: 10px !important;
+    padding: 10px 0px 10px 10px !important;
     > div:first-of-type {
       padding: 0px !important;
       display: block !important;
@@ -362,7 +386,7 @@ body {
         position: relative;
         &:before {
           z-index: -2;
-          padding: 10px;
+          padding: 10px 0 10px 10px;
           height: 100%;
           width: 100%;
           left: -10px;
