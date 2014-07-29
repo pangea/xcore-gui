@@ -347,4 +347,39 @@ body {
 	}
 }
 
+.extension-sub-list.enyo-scroller {
+  height: 100%;
+  .enyo-node {
+    padding: 10px !important;
+    > div:first-of-type {
+      padding: 0px !important;
+      display: block !important;
+    }
+    &.selected {
+      > div:first-of-type {
+        color: #ffffff;
+        z-index: 1;
+        position: relative;
+        &:before {
+          z-index: -2;
+          padding: 10px;
+          height: 100%;
+          width: 100%;
+          left: -10px;
+          top: -10px;
+          display: block;
+          position: absolute;
+          content: "";
+          background: #99cc33;
+        }
+      }
+    }
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .enyo-node-box {
+    margin-top: 10px;
+  }
+}
 /* ----------------------------------------- end rule overrides */
