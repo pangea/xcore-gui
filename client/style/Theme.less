@@ -154,6 +154,7 @@ body {
   }
 
 }
+
 .extension-picker.onyx-picker {
   top: 106px !important;
   .onyx-menu-item {
@@ -229,12 +230,26 @@ body {
   .item {
     color: #333333;
     padding: 10px 0px 10px 10px;
+    position: relative;
     &:hover {
       cursor: pointer;
     }
     &.selected {
       color: #ffffff;
-      background: @pangea-green
+      background: @pangea-green;
+      &:after {
+        font-size: 74px;
+        position: absolute;
+        color: #ffffff;
+        font-family: FontAwesome;
+        font-weight: normal;
+        font-style: normal;
+        display: inline-block;
+        text-decoration: inherit;
+        content: "\f0d9";
+        right: -1px;
+        top: -17px;
+      }
     }    
   }
 }
@@ -252,7 +267,21 @@ body {
   .selected {
     .item {
       color: #ffffff;
-      background: @pangea-green
+      background: @pangea-green;
+      position: relative;
+      &:after {
+        font-size: 74px;
+        position: absolute;
+        color: #ffffff;
+        font-family: FontAwesome;
+        font-weight: normal;
+        font-style: normal;
+        display: inline-block;
+        text-decoration: inherit;
+        content: "\f0d9";
+        right: -1px;
+        top: -17px;
+      }
     }
   }
 }
@@ -394,7 +423,20 @@ body {
           display: block;
           position: absolute;
           content: "";
-          background: #99cc33;
+          background: @pangea-green;
+        }
+        &:after {
+          font-size: 74px;
+          position: absolute;
+          color: #ffffff;
+          font-family: FontAwesome;
+          font-weight: normal;
+          font-style: normal;
+          display: inline-block;
+          text-decoration: inherit;
+          content: "\f0d9";
+          right: -1px;
+          top: -27px;
         }
       }
     }
