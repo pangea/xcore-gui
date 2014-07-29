@@ -13,7 +13,8 @@ enyo.kind({
     onExtensionSelect: "extensionSelected",
     onSubListSelect: "subListSelected",
     onStatusBarItemAdded: 'resizeGui',
-    onNotificationRendered: 'resizeGui'
+    onNotificationRendered: 'resizeGui',
+		onStatusAlert: "addStatusBarAlertAction"
   },
   components:[
     {kind: "onyx.Toolbar", name: "header", layoutKind: "FittableHeaderLayout", components: [
@@ -96,6 +97,10 @@ enyo.kind({
   },
   addLeftWorkspaceToolbarAction: function (action) {
     this.$.workspaceToolbar.addLeftWorkspaceToolbarAction(action);
+    return true;
+  },
+  addCenterWorkspaceToolbarAction: function (action) {
+    this.$.workspaceToolbar.addCenterWorkspaceToolbarAction(action);
     return true;
   },
   clearWorkspaceToolbar: function() {

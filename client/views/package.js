@@ -8,5 +8,7 @@ enyo.depends(
   "user_nav.js",
   "extension_selector.js",
   "extension_sub_list.js",
-  "workspace.js"
+  "workspace.js",
+  "model_view.js",
+  "model_table.js"
 );
