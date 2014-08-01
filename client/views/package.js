@@ -1,7 +1,6 @@
 enyo.depends(
   "gui.js",
   "logo.js",
-  "search.js",
   "workspace_toolbar.js",
   "status_bar.js",
   "user_nav.js",
@@ -9,5 +8,8 @@ enyo.depends(
   "extension_sub_list.js",
   "workspace.js",
   "model_view.js",
-  "model_table.js"
+	"search.js",
+	"widgets",
+	"partials",
+	"helpers"
 );

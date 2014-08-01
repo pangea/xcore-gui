@@ -108,6 +108,7 @@
 	  saveItem: function() {
 		  var user = xCore.currentUser();
 		  var values = this.getFormValues();
+
 		  if (!this.model.hasCreator()) {
         values.created_at = new Date();
 			  values.created_by = user.uid;

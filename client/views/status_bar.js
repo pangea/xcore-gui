@@ -12,7 +12,7 @@ enyo.kind({
         {kind: "FittableRows", name: "alerts", classes: "alert", style: "width: 50%;", components: [
           {kind: "Notification", name: "notif"}
         ]},
-        {kind: "FittableRows", name: "icons", style: "width: 50%;"}
+        {kind: "FittableRows", name: "icons", style: "width: 50%; text-align: right;"}
       ]}
     ]}
   ],
