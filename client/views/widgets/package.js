@@ -3,5 +3,6 @@ enyo.depends(
 	"images.js",
 	"inputs.js",
 	"pickers.js",
-	"select_relation.js"
+	"select_relation.js",
+  "font_awesome_icon.js"
 );
