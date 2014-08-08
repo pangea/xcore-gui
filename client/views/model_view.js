@@ -6,7 +6,7 @@
 	  edit: false,
     dirty: false,
 	  events: {
-		  onSubListSelect: '',
+		  onLoadWorkspace: '',
 		  onStatusAlert: ''
 	  },
     handlers: {
@@ -64,11 +64,11 @@
         verified = confirm('You have unsaved changes, are you sure you want to go back?');
       }
 
-		  // TODO: doSubListSelect should be renamed to doSetWorkspace or something
+		  // TODO: doLoadWorkspace should be renamed to doSetWorkspace or something
       //       since that's what it does.
       if(verified) {
         if(this.edit && !this.model.isNew) {
-		      this.doSubListSelect({
+		      this.doLoadWorkspace({
 			      name: 'itemView',
             kind: this.kind,
 			      model: this.model,
@@ -76,12 +76,12 @@
 		      });
         } else {
           // TODO: Not sure I like this, but it should work
-		      this.doSubListSelect({name: 'itemList', kind: this.kind + 'List'});
+		      this.doLoadWorkspace({name: 'itemList', kind: this.kind + 'List'});
         }
       }
 	  },
 	  editItem: function(inSender, inEvent) {
-		  this.doSubListSelect({
+		  this.doLoadWorkspace({
 			  name: 'itemEditor',
         kind: this.kind,
 			  model: this.model,
