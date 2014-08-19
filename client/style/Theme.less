@@ -249,7 +249,6 @@ body {
 }
 #xCore_gui_workspace,
 #xCore_gui_statusBar {
-  z-index: -1;
   margin-left: -1px;
   border-left: 1px solid @border-grey;
 }
@@ -476,7 +475,7 @@ body {
       > div:first-of-type {
         padding: 10px 0 10px 10px !important;
         margin-left: -10px;
-        margin-top: -10px;        
+        margin-top: -10px;
         background: #99cc33;
         color: #ffffff;
         z-index: 1;
@@ -512,5 +511,36 @@ body {
   .enyo-node-box {
     margin-top: 10px;
   }
+}
+
+.onyx-scrim .fa-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -50px;
+  font-size: 100px;
+}
+
+// Fixed width columns
+// TODO: Bootstrap style (xs/sm/md/lg/xl) columns?
+.enyo-fittable-columns-layout {
+
+  .col2 {
+    width: 19%;
+    padding: 0.5%;
+  }
+
+  .col3 {
+    width: 24%;
+    padding: 0.5%;
+  }
+}
+
+
+.item-header {
+  background-color: #4C4C4C;
+  color: #eee;
+  font-weight: bold;
+  font-variant: small-caps;
 }
 /* ----------------------------------------- end rule overrides */
