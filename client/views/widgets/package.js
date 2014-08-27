@@ -1,4 +1,6 @@
 enyo.depends(
+  "sublist.js",
+  "model_list.js",
 	"date_picker.js",
 	"images.js",
 	"inputs.js",

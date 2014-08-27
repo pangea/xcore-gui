@@ -8,8 +8,8 @@ enyo.depends(
   "extension_sub_list.js",
   "workspace.js",
   "model_view.js",
-	"search.js",
-	"widgets",
-	"partials",
-	"helpers"
+  "search.js",
+  "widgets",
+  "partials",
+  "helpers"
 );
