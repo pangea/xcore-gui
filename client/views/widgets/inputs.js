@@ -1,3 +1,37 @@
+/*** Text Input Field ***/
+enyo.kind({
+	name: 'XV.TextInput',
+	kind: 'onyx.InputDecorator',
+	attrs: {},
+	components: [{
+		name: 'tiInput',
+		kind: 'onyx.Input',
+		type: 'text'
+	}],
+	create: function() {
+		this.inherited(arguments);
+		this.$.tiInput.set('value', this.attrs.value);
+		this.$.tiInput.attributes.name = this.attrs.name;
+	}
+});
+
+/*** Text Area Field ***/
+enyo.kind({
+	name: 'XV.TextArea',
+	kind: 'onyx.InputDecorator',
+	attrs: {},
+	components: [{
+		name: 'textArea',
+		kind: 'onyx.TextArea'
+	}],
+	create: function() {
+		this.inherited(arguments);
+		this.$.textArea.set('value', this.attrs.value);
+		this.$.textArea.attributes.name = this.attrs.name;
+	}
+});
+
+/*** ZipCode Input Field ***/
 enyo.kind({
 	name: 'XV.ZipCodeInput',
 	kind: 'onyx.InputDecorator',
@@ -18,6 +52,8 @@ enyo.kind({
 	}
 });
 
+
+/*** Telephone Input Field ***/
 enyo.kind({
 	name: 'XV.TelephoneInput',
 	kind: 'onyx.InputDecorator',
@@ -37,4 +73,3 @@ enyo.kind({
 		this.$.telInput.attributes.name = this.attrs.name;
 	}
 });
-
