@@ -27,6 +27,7 @@
 /* Place your Onyx rule overrides here ------------------- */
 @pangea-green: #99cc33;
 @border-grey: #d8d8d8;
+@border-dark-grey: #a5a5a5;
 body {
   color: #333333;
   font-family: 'Helvetica Neue', 'Nimbus Sans L', Arial, sans-serif;
@@ -34,7 +35,7 @@ body {
 .logo {
   height: 26px;
   width: auto;
-} 
+}
 .search.onyx-input-decorator {
   background: #ffffff;
   position: relative;
@@ -104,6 +105,38 @@ body {
       }
     }
   }
+  .onyx-menu {
+    margin-left: -40px;
+    margin-top: 2px;
+    z-index: 1;
+    border: 1px solid @border-dark-grey;
+    &:before {
+      z-index: 0;
+      font-size: 30px;
+      color: @border-dark-grey;
+      font-family: FontAwesome;
+      font-weight: normal;
+      font-style: normal;
+      display: inline-block;
+      content: "\f0d8";
+      position: absolute;
+      top: -22px;
+      right: 10px;
+    }
+    &:after {
+      z-index: 2;
+      font-size: 27px;
+      color: #ffffff;
+      font-family: FontAwesome;
+      font-weight: normal;
+      font-style: normal;
+      display: inline-block;
+      content: "\f0d8";
+      position: absolute;
+      right: 11px;
+      top: -19px;
+    }
+  }
 }
 .white.onyx-toolbar {
   background: #ffffff;
@@ -111,12 +144,17 @@ body {
   border-top: 0px;
   border-left: 0px;
   border-right: 0px;
-  height: 36px;
+  height: 37px;
 }
 .status-bar.onyx-toolbar {
   background: #ffffff;
   border: 0px;
 }
+
+.extension-picker.onyx-menu {
+  border: 1px solid @border-dark-grey;
+}
+
 .extension-picker.onyx-picker-decorator {
   .onyx-button {
     background: none !important;
@@ -129,7 +167,7 @@ body {
     font-size: 22px;
     &:hover {
       cursor: pointer;
-    }    
+    }
     &:active:hover:not([disabled]) {
       border: none !important;
     }
@@ -151,19 +189,45 @@ body {
   }
 
 }
+
 .extension-picker.onyx-picker {
   top: 106px !important;
   .onyx-menu-item {
     box-shadow: none !important;
     border: 0px !important;
     color: #333333;
+    text-align: left;
+    padding-left: 22px;
     &:hover {
-      background: @border-grey;
+      background: #ffffff;
       cursor: pointer;
+      &:before {
+        color: @border-dark-grey;
+        font-size: 20px;
+        font-family: FontAwesome;
+        font-weight: normal;
+        font-style: normal;
+        display: inline-block;
+        text-decoration: inherit;
+        content: "\f142";
+        position: absolute;
+        left: 10px;
+      }
     }
     &.selected {
-      background: @pangea-green;
-      color: #ffffff;
+      background: #ffffff;
+      &:before {
+        color: @pangea-green;
+        font-size: 20px;
+        font-family: FontAwesome;
+        font-weight: normal;
+        font-style: normal;
+        display: inline-block;
+        text-decoration: inherit;
+        content: "\f142";
+        position: absolute;
+        left: 10px;
+      }
     }
   }
 }
@@ -176,12 +240,18 @@ body {
 
     &:active:hover:not([disabled]) {
       background: @border-grey;
-      border-color: #bebebe;      
+      border-color: #bebebe;
     }
   }
 }
 #xCore_gui_workspace {
   box-shadow: rgb(216, 216, 216) 0px 7px 9px -7px inset;
+}
+#xCore_gui_workspace,
+#xCore_gui_statusBar {
+  z-index: -1;
+  margin-left: -1px;
+  border-left: 1px solid @border-grey;
 }
 .onyx-menu {
   background: #ffffff;
@@ -197,30 +267,53 @@ body {
   color: #ffffff;
 }
 .extension-sub-list.enyo-list {
+  direction: rtl;
   &:hover {
     cursor: pointer;
   }
   .item {
     color: #333333;
     padding: 10px 0px 10px 10px;
-    margin-right: 10px;
+    position: relative;
     &:hover {
       cursor: pointer;
     }
     &.selected {
       color: #ffffff;
-      background: @pangea-green
-    }    
+      background: @pangea-green;
+      &:before {
+        content: '';
+        position: absolute;
+        top: -4px;
+        right: -1px;
+        width: 0;
+        height: 0;
+        border-top: 24px solid transparent;
+        border-bottom: 24px solid transparent;
+        border-right: 24px solid @border-grey;
+      }
+      &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 0;
+        height: 0;
+        border-top: 20px solid transparent;
+        border-bottom: 20px solid transparent;
+        border-right: 20px solid #ffffff;
+      }
+    }
   }
 }
 .extension-sub-list.enyo-data-list {
+  direction: rtl;
   &:hover {
     cursor: pointer;
   }
   .item {
     color: #333333;
     padding: 10px 0px 10px 10px;
-    margin-right: 10px;
     &:hover {
       cursor: pointer;
     }
@@ -228,7 +321,30 @@ body {
   .selected {
     .item {
       color: #ffffff;
-      background: @pangea-green
+      background: @pangea-green;
+      position: relative;
+      &:before {
+        content: '';
+        position: absolute;
+        top: -4px;
+        right: -1px;
+        width: 0;
+        height: 0;
+        border-top: 24px solid transparent;
+        border-bottom: 24px solid transparent;
+        border-right: 24px solid @border-grey;
+      }
+      &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 0;
+        height: 0;
+        border-top: 20px solid transparent;
+        border-bottom: 20px solid transparent;
+        border-right: 20px solid #ffffff;
+      }
     }
   }
 }
@@ -274,7 +390,7 @@ body {
         background-color: #dff0d8;
         border-color: #d6e9c6;
         .notification-messagebar-message{
-          color: #3c763d;      
+          color: #3c763d;
         }
         .notification-messagebar-icon {
           &:before {
@@ -287,7 +403,7 @@ body {
         background-color: #fcf8e3;
         border-color: #faebcc;
         .notification-messagebar-message{
-          color: #8a6d3b;        
+          color: #8a6d3b;
         }
         .notification-messagebar-icon {
           &:before {
@@ -347,4 +463,54 @@ body {
 	}
 }
 
+.extension-sub-list.enyo-scroller {
+  direction: rtl;
+  height: 100%;
+  .enyo-node {
+    padding: 10px 0px 10px 10px !important;
+    > div:first-of-type {
+      padding: 0px !important;
+      display: block !important;
+    }
+    &.selected {
+      > div:first-of-type {
+        padding: 10px 0 10px 10px !important;
+        margin-left: -10px;
+        margin-top: -10px;        
+        background: #99cc33;
+        color: #ffffff;
+        z-index: 1;
+        position: relative;
+        &:before {
+          content: '';
+          position: absolute;
+          top: -4px;
+          right: -1px;
+          width: 0;
+          height: 0;
+          border-top: 24px solid transparent;
+          border-bottom: 24px solid transparent;
+          border-right: 24px solid @border-grey;
+        }
+        &:after {
+          content: '';
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 0;
+          height: 0;
+          border-top: 20px solid transparent;
+          border-bottom: 20px solid transparent;
+          border-right: 20px solid #ffffff;
+        }
+      }
+    }
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .enyo-node-box {
+    margin-top: 10px;
+  }
+}
 /* ----------------------------------------- end rule overrides */

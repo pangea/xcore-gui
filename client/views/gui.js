@@ -11,7 +11,7 @@ enyo.kind({
   handlers: {
     onLogoLoaded: "resizeGui",
     onExtensionSelect: "extensionSelected",
-    onSubListSelect: "subListSelected",
+    onLoadWorkspace: "loadWorkspace",
     onStatusBarItemAdded: 'resizeGui',
     onNotificationRendered: 'resizeGui',
 		onStatusAlert: "addStatusBarAlertAction"
@@ -71,7 +71,7 @@ enyo.kind({
     this.$.extensionSubList.destroyClientControls();
     this.currentExtension.loadSubList(this.$.extensionSubList);
   },
-  subListSelected: function(inEvent, name) {
+  loadWorkspace: function(inEvent, name) {
     this.$.workspace.destroyClientControls();
     this.clearWorkspaceToolbar();
     this.currentExtension.loadWorkspace(this.$.workspace, name);
