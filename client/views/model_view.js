@@ -139,40 +139,60 @@
       });
     },
 	  getFormValues: function() {
-      // var form = this.$.modelTable.getForm(),
-      //     node = form.hasNode(),
-      //     values = {};
+      var values = {};
 
-      // // Should write some sanitation code here. Especially SQL Injection prevention.
-      // if(node) {
-      //   for (var i = 0, l = node.elements.length; i < l; i++) {
-      //     var el = node.elements.item(i),
-      //         name = el.name;
+      enyo.forEach(this.fields, function(field) {
+        console.log(field.name);
+        // Normally, doing this would be considered bad practice (it still kinda is)
+        // but I think it's okay in this case since we can actually reasonably
+        // assume the structure of modelTable
+        values[field.name] = this.$.modelTable.$[field.name].value;
+      }, this);
 
-      //     values[name] = el.value;
-      //   }
-      // }
-
-      // return values;
+      return values;
 	  },
 	  saveItem: function() {
-		  var user = xCore.currentUser();
-		  var values = this.getFormValues();
+		  var that = this,
+          user = xCore.currentUser(),
+          values = this.getFormValues(),
+          scrimZIndex = 999;
 
       // Create Audit Log entry?
-		  // if (!this.model.hasCreator()) {
-      //   values.created_at = new Date();
-			//   values.created_by = user.uid;
-		  // }
-
-      // values.updated_at = new Date();
-      // values.updated_by = user.uid;
 
       this.model.setObject(values);
+      this.createComponent({
+        name: 'blocker',
+        kind: 'onyx.Scrim',
+        classes: 'onyx-scrim enyo-fit onyx-scrim-translucent',
+        components: [
+          { kind: 'XV.FontAwesomeIcon',
+            icon: 'spinner',
+            classes: 'fa fa-spin',
+            style: 'color: #636363'
+          }
+        ]
+      });
+
+      this.$.blocker.showAtZIndex(scrimZIndex);
+
       // Use success/fail functions?
-      this.model.commit();
-      this.dirty = false;
-		  this.goBack();
+      this.model.commit({
+        success: function() {
+          that.$.blocker.hideAtZIndex(scrimZIndex);
+          that.dirty = false;
+		      that.goBack();
+        },
+        fail: function(inEvent, opts, res) {
+          console.log(arguments);
+          that.$.blocker.hideAtZIndex(scrimZIndex);
+          that.doStatusAlert({
+            type: 'danger',
+            title: 'Save Failed',
+            content: 'An error prevented this object from saving.',
+            stay: false
+          });
+        }
+      });
 	  }
   });
 

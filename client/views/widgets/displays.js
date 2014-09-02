@@ -39,6 +39,7 @@ enyo.kind({
   name: 'XV.AttributeDisplay',
   kind: 'XV.ValueDisplay',
   allowHtml: true,
+  style: 'text-align: right',
   published: {
     /**
      * If true, the final contents will be wrapped with `<b>` tags.
