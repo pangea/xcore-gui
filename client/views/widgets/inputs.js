@@ -1,6 +1,9 @@
+// TODO: Research using a mixin to further abstract functionality.  These two
+//       kinds are way too similar.
 enyo.kind({
   name: 'XV.InputCell',
   kind: 'enyo.TableCell',
+  classes: 'value-input',
   published: {
     value: ''
   },
@@ -34,7 +37,7 @@ enyo.kind({
 enyo.kind({
   name: 'XV.TextInputCell',
   kind: 'XV.InputCell',
-  contents: [
+  components: [
     { name: 'input', kind: 'XV.TextInput' }
   ]
 });

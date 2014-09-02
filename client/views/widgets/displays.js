@@ -58,7 +58,7 @@ enyo.kind({
   transform: function(value) {
     // the special value $& inserts the matched value into the string used in
     // replace.  This allows us to insert spaces before every capital letter.
-    var newVal = value.charAt(0).toUpperCase() + value.substr(1).replace(/[A-Z]/, ' $&');
+    var newVal = enyo.cap(value.replace(/[A-Z]/, ' $&'));
     if(this.colonAfter) {
       newVal += ':';
     }

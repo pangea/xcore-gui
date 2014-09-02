@@ -101,11 +101,6 @@
     handlers: {
       onchange: 'markDirty'
     },
-    components: [
-      { name: 'modelForm', tag: 'form', components: [
-        { name: 'modelTable', kind: 'enyo.Table', classes: 'model-table' }
-      ]}
-    ],
     rightButtons: [
 		  {kind: 'onyx.Button', method: 'saveItem', classes: 'fa fa-save'}
     ],
@@ -128,15 +123,14 @@
       return verified;
     },
     setupRow: function(row) {
-      var that = this,
-          components = [];
+      var components = [];
 
       enyo.forEach(row, function(field) {
         components.push({ value: field.name, kind: 'XV.AttributeCell' });
 
-        field.value = that.model.get(field.name);
+        field.value = this.model.get(field.name);
         components.push(field);
-      });
+      }, this);
 
       this.$.modelTable.createComponent({
         defaultKind: 'XV.TextInputCell',
