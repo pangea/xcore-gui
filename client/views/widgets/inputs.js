@@ -1,75 +1,105 @@
+enyo.kind({
+  name: 'XV.InputCell',
+  kind: 'enyo.TableCell',
+  published: {
+    value: ''
+  },
+  bindings: [
+    { from: '.value', to: '.$.input.value', oneWay: false }
+  ]
+});
+
+enyo.kind({
+  name: 'XV.InputField',
+  kind: 'onyx.InputDecorator',
+  published: {
+    value: ''
+  },
+  bindings: [
+    {from: '.value', to: '.$.input.value', oneWay: false}
+  ]
+});
+
 /*** Text Input Field ***/
 enyo.kind({
 	name: 'XV.TextInput',
-	kind: 'onyx.InputDecorator',
-	attrs: {},
+	kind: 'XV.InputField',
 	components: [{
-		name: 'tiInput',
+		name: 'input',
 		kind: 'onyx.Input',
 		type: 'text'
-	}],
-	create: function() {
-		this.inherited(arguments);
-		this.$.tiInput.set('value', this.attrs.value);
-		this.$.tiInput.attributes.name = this.attrs.name;
-	}
+	}]
+});
+
+enyo.kind({
+  name: 'XV.TextInputCell',
+  kind: 'XV.InputCell',
+  contents: [
+    { name: 'input', kind: 'XV.TextInput' }
+  ]
 });
 
 /*** Text Area Field ***/
 enyo.kind({
 	name: 'XV.TextArea',
-	kind: 'onyx.InputDecorator',
-	attrs: {},
+	kind: 'XV.InputField',
 	components: [{
-		name: 'textArea',
+		name: 'input',
 		kind: 'onyx.TextArea'
-	}],
-	create: function() {
-		this.inherited(arguments);
-		this.$.textArea.set('value', this.attrs.value);
-		this.$.textArea.attributes.name = this.attrs.name;
-	}
+	}]
+});
+
+enyo.kind({
+  name: 'XV.TextAreaCell',
+  kind: 'XV.InputCell',
+  components: [
+    { name: 'input', kind: 'XV.TextArea' }
+  ]
 });
 
 /*** ZipCode Input Field ***/
 enyo.kind({
 	name: 'XV.ZipCodeInput',
-	kind: 'onyx.InputDecorator',
-	attrs: {},
+	kind: 'XV.InputField',
 	components: [{
-		name: 'zcInput',
+		name: 'input',
 		kind: 'onyx.Input',
 		type: 'text',
 		attributes: {
 			pattern: "[0-9]{5}",
 			title: "5 number zip code"
 		}
-	}],
-	create: function() {
-		this.inherited(arguments);
-		this.$.zcInput.set('value', this.attrs.value);
-		this.$.zcInput.attributes.name = this.attrs.name;
-	}
+	}]
+});
+
+enyo.kind({
+  name: 'XV.ZipCodeInputCell',
+  kind: 'XV.InputCell',
+  components: [
+    { name: 'input', kind: 'XV.ZipCodeInput' }
+  ]
 });
 
 
 /*** Telephone Input Field ***/
 enyo.kind({
 	name: 'XV.TelephoneInput',
-	kind: 'onyx.InputDecorator',
-	attrs: {},
+	kind: 'XV.InputField',
 	components: [{
-		name: 'telInput',
+		name: 'input',
 		kind: 'onyx.Input',
 		type: 'tel',
 		attributes: {
 			pattern: "^[0-9]{3}-[0-9]{3}-[0-9]{4}",
 			title: "10 digit phone number xxx-xxx-xxxx"
 		}
-	}],
-	create: function() {
-		this.inherited(arguments);
-		this.$.telInput.set('value', this.attrs.value);
-		this.$.telInput.attributes.name = this.attrs.name;
-	}
+	}]
+});
+
+enyo.kind({
+  name: 'XV.TelephoneInputCell',
+  kind: 'XV.InputCell',
+  components: [
+    { name: 'input', kind: 'XV.TelephoneInput' }
+  ]
 });

@@ -1,17 +1,24 @@
 enyo.kind({
 	name: 'XV.Select',
 	kind: 'enyo.Select',
-	onchange: 'selectChanged',
+  published: {
+    value: ''
+  },
+  bindings: [
+    {from: '.selected', to: '.value', transform: 'getValue'}
+  ],
 	create: function() {
 		this.inherited(arguments);
-		this.attributes.name = this.attrs.name;
+    if(this.attrs) {
+      this.set('value', this.attrs.value);
+		  this.attributes.name = this.attrs.name;
+    }
 		enyo.forEach(this.children, function(option, idx) {
-			if (option.value === this.attrs.value) {
+			if (option.value === this.value) {
 				this.set('selected', idx);
 			}
 		}, this);
-	},
-	selectChanged: function(inSender, inEvent) {}
+	}
 });
 
 enyo.kind({
@@ -21,6 +28,14 @@ enyo.kind({
 		{content: "Yes", value: "true"},
 		{content: "No", value: "false"}
 	]
+});
+
+enyo.kind({
+  name: 'XV.BooleanPickerCell',
+  kind: 'XV.InputCell',
+  components: [
+    { name: 'input', kind: 'XV.BooleanPicker' }
+  ]
 });
 
 enyo.kind({
@@ -79,4 +94,12 @@ enyo.kind({
 		{ value: "WI", content:"Wisconsin" },
 		{ value: "WY", content:"Wyoming" }
 	]
+});
+
+enyo.kind({
+  name: 'XV.StatePickerCell',
+  kind: 'XV.InputCell',
+  components: [
+    {name: 'input', kind: 'XV.StatePicker'}
+  ]
 });

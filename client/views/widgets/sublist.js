@@ -7,26 +7,29 @@ enyo.kind({
     items: []
   },
   components: [
-    { 
-      name: "list",
+    { name: "list",
       kind: "List",
       fit: true,
       classes: "extension-sub-list",
       onSetupItem: "setupItem",
       components: [
-        {
-          name: "sublistItem", classes: 'item', ontap: "itemTap", 
+        { name: "sublistItem",
+          classes: 'item',
+          ontap: "itemTap",
           components: [
             { name: "sublistModule" }
-          ] 
+          ]
         }
       ]
     }
   ],
-  create: function() {
-    this.inherited(arguments);
-    this.$.list.setCount(this.items.length);
-  },
+  create: enyo.inherit(function(sup) {
+    return function() {
+      sup.call(this, arguments);
+      // apparently, data bindings don't work for this...
+      this.$.list.setCount(this.items.length);
+    };
+  }),
   setupItem: function(inSender, inEvent) {
     var i = inEvent.index,
         item = this.getItems()[i];

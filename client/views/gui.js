@@ -71,10 +71,10 @@ enyo.kind({
     this.$.extensionSubList.destroyClientControls();
     this.currentExtension.loadSubList(this.$.extensionSubList);
   },
-  loadWorkspace: function(inEvent, name) {
+  loadWorkspace: function(inEvent, workspace) {
     this.$.workspace.destroyClientControls();
     this.clearWorkspaceToolbar();
-    this.currentExtension.loadWorkspace(this.$.workspace, name);
+    this.currentExtension.loadWorkspace(this.$.workspace, workspace);
   },
   rendered: function () {
     this.inherited(arguments);

@@ -3,6 +3,7 @@ enyo.depends(
   "model_list.js",
 	"date_picker.js",
 	"images.js",
+  "displays.js",
 	"inputs.js",
 	"pickers.js",
 	"select_relation.js",
