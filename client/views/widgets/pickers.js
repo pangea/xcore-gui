@@ -22,7 +22,7 @@ enyo.kind({
     }}
   ],
   updateActive: function() {
-    this.active = this.getValue();
+    this.set('active', this.getValue());
   }
 });
 

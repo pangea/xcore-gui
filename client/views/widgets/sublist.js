@@ -25,7 +25,7 @@ enyo.kind({
   ],
   create: enyo.inherit(function(sup) {
     return function() {
-      sup.call(this, arguments);
+      sup.apply(this, arguments);
       // apparently, data bindings don't work for this...
       this.$.list.setCount(this.items.length);
     };
@@ -33,7 +33,7 @@ enyo.kind({
   setupItem: function(inSender, inEvent) {
     var i = inEvent.index,
         item = this.getItems()[i];
-    this.$.sublistModule.setContent(item.name);
+    this.$.sublistModule.setContent(item.content || item.name);
     this.$.sublistItem.addRemoveClass('selected', inSender.isSelected(i));
     return true;
   },

@@ -52,14 +52,8 @@ enyo.kind({
      */
     colonAfter: true
   },
-  /**
-   * Transforms the given camelCased value to a Titlized form.
-   * E.g. firstName -> First Name
-   */
   transform: function(value) {
-    // the special value $& inserts the matched value into the string used in
-    // replace.  This allows us to insert spaces before every capital letter.
-    var newVal = enyo.cap(value.replace(/[A-Z]/, ' $&'));
+    var newVal = XV.titlize(value);
     if(this.colonAfter) {
       newVal += ':';
     }

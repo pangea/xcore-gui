@@ -22,16 +22,18 @@ enyo.kind({
       allowTransitions: false,
       renderDelay: null,
       components: [
-        { classes: 'item-holder', components: [
-          { kind: 'FittableColumns', components: [
-            // In here you would put the columns for your model
-            // e.g. { name: 'id', fit: true }
-          ] }
-        ] }
-      ],
-      bindings: [
-        // Bindings from the model to the column
-        // e.g. { from: '.model.id', to: '.$.id.content' }
+        { classes: 'item-holder', 
+          components: [
+            { kind: 'FittableColumns', components: [
+              // In here you would put the columns for your model
+              // e.g. { name: 'id', fit: true }
+            ] }
+          ],
+          bindings: [
+            // Bindings from the model to the column
+            // e.g. { from: '.model.id', to: '.$.id.content' }
+          ]
+        }
       ],
       ontap: 'viewItem'
     }

@@ -86,9 +86,8 @@ body {
     box-shadow: none !important;
     position: relative;
     color: #ffffff;
-    &:hover {
-      cursor: pointer;
-    }
+    cursor: pointer;
+
     &:after {
       color:#ffffff;
       font-family:FontAwesome;
@@ -165,9 +164,8 @@ body {
     position: relative;
     color: @pangea-green;
     font-size: 22px;
-    &:hover {
-      cursor: pointer;
-    }
+    cursor: pointer;
+
     &:active:hover:not([disabled]) {
       border: none !important;
     }
@@ -242,6 +240,18 @@ body {
       background: @border-grey;
       border-color: #bebebe;
     }
+
+    &.onyx-negative {
+      @negative-red: #c51616;
+      background-color: @negative-red;
+      border-color: darken(@negative-red, 10%);
+      color: #f2f2f2;
+
+      &:active:hover:not([disabled]) {
+        background: darken(@negative-red, 10%);
+        border-color: darken(@negative-red, 20%);
+      }
+    }
   }
 }
 #xCore_gui_workspace {
@@ -267,16 +277,14 @@ body {
 }
 .extension-sub-list.enyo-list {
   direction: rtl;
-  &:hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
+
   .item {
     color: #333333;
     padding: 10px 0px 10px 10px;
     position: relative;
-    &:hover {
-      cursor: pointer;
-    }
+    cursor: pointer;
+
     &.selected {
       color: #ffffff;
       background: @pangea-green;
@@ -307,15 +315,12 @@ body {
 }
 .extension-sub-list.enyo-data-list {
   direction: rtl;
-  &:hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
+
   .item {
     color: #333333;
     padding: 10px 0px 10px 10px;
-    &:hover {
-      cursor: pointer;
-    }
+    cursor: pointer;
   }
   .selected {
     .item {
@@ -524,6 +529,8 @@ body {
 // Model View CSS
 
 .model-table {
+  width: 100%;
+
   .model-table-row {
     .value-display, .value-input {
       background-color: #fefefe;
