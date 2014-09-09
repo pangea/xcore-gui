@@ -23,6 +23,19 @@
       return function() {
         sup.apply(this, arguments);
 
+        this.createComponent({
+          name: 'blocker',
+          kind: 'onyx.Scrim',
+          classes: 'onyx-scrim enyo-fit onyx-scrim-translucent',
+          components: [
+            { kind: 'XV.FontAwesomeIcon',
+              icon: 'spinner',
+              classes: 'fa-spin',
+              style: 'color: #636363'
+            }
+          ]
+        });
+
         this.setupRows();
 
 		    this.setupToolbarActions();
@@ -158,24 +171,12 @@
           scrimZIndex = 999;
 
       // Create Audit Log entry?
+      // should probably be done on the server.
 
       this.model.setObject(values);
-      this.createComponent({
-        name: 'blocker',
-        kind: 'onyx.Scrim',
-        classes: 'onyx-scrim enyo-fit onyx-scrim-translucent',
-        components: [
-          { kind: 'XV.FontAwesomeIcon',
-            icon: 'spinner',
-            classes: 'fa fa-spin',
-            style: 'color: #636363'
-          }
-        ]
-      });
 
       this.$.blocker.showAtZIndex(scrimZIndex);
 
-      // Use success/fail functions?
       this.model.commit({
         success: function() {
           that.$.blocker.hideAtZIndex(scrimZIndex);
@@ -185,6 +186,7 @@
         fail: function(inEvent, opts, res) {
           console.log(arguments);
           that.$.blocker.hideAtZIndex(scrimZIndex);
+          // TODO: Better error message
           that.doStatusAlert({
             type: 'danger',
             title: 'Save Failed',

@@ -157,25 +157,43 @@ enyo.kind({
     /**
      * String name or constructor for the model this relation works with
      */
-    modelKind: '',
+    modelKind: null,
     model: null
   },
-  bindings: [
-    { from: '.value', to: '.model.id' }
-  ],
   create: enyo.inherit(function(sup) {
     return function() {
-      var that = this;
 
-      if(enyo.isString(this.modelKind)) {
-        this.set('model', enyo.store.createKind(this.modelKind));
-      } else if(enyo.isFunction(this.modelKind)) {
-        this.set('model', new this.modelKind());
+      if(this.model === null) {
+        if(this.value) {
+          this.valueChanged();
+        }
+      } else {
+        this.modelChanged();
       }
 
       sup.apply(this, arguments);
-
-      this.model.fetch();
     };
-  })
+  }),
+  modelChanged: function() {
+    throw new Error('Not Implemented');
+  },
+  valueChanged: function() {
+    this.addSpinner();
+    xCore.findModelByKey(this.modelKind, this.value, {
+      success: enyo.bindSafely(this, function(model) {
+        this.set('model', model);
+      })
+    });
+  },
+  addSpinner: function() {
+    if(this.controls) { // Because reasons?
+      this.createComponent({ kind: 'XV.FontAwesomeIcon',
+                             icon: 'spinner',
+                             classes: 'fa-spin'
+                           });
+    }
+  },
+  removeSpinner: function() {
+    this.destroyComponents();
+  }
 });
