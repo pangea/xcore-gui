@@ -13,7 +13,7 @@ enyo.kind({
           value = val+'';
 
 		  enyo.forEach(this.children, function(option, idx) {
-			  if (option.value === value) {
+			  if ((option.value+'') === value) {
 				  selected = idx;
 			  }
 		  });
@@ -42,7 +42,7 @@ enyo.kind({
 	name: 'XV.BooleanPicker',
 	kind: 'XV.SelectWrapper',
 	components: [
-    {components: [
+    {name: 'select', components: [
 		  {content: "Yes", value: "true"},
 		  {content: "No", value: "false"}
     ]}
@@ -61,7 +61,7 @@ enyo.kind({
 	name: 'XV.StatePicker',
 	kind: 'XV.SelectWrapper',
 	components: [
-    {components: [
+    {name: 'select', components: [
 		  { value: "AL", content:"Alabama" },
 		  { value: "AK", content:"Alaska" },
 		  { value: "AZ", content:"Arizona" },
@@ -123,4 +123,49 @@ enyo.kind({
   components: [
     {name: 'input', kind: 'XV.StatePicker'}
   ]
+});
+
+enyo.kind({
+  name: 'XV.RelationPicker',
+  kind: 'XV.SelectWrapper',
+  published: {
+    collection: null
+  },
+  components: [
+    { kind: 'XV.FontAwesomeIcon', icon: 'spinner', classes: 'fa-spin' }
+  ],
+  create: enyo.inherit(function(sup) {
+    return function() {
+      if(enyo.isString(this.collection)) {
+        this.collection = enyo.getPath(this.collection);
+      }
+
+      if(enyo.isFunction(this.collection)) {
+        this.collection = new this.collection();
+      }
+
+      sup.apply(this, arguments);
+
+      this.collection.fetch({
+        success: enyo.bindSafely(this, 'buildSelect')
+      });
+    };
+  }),
+  buildSelect: function() {
+    var options = [];
+
+    for(var i = 0, m; (m = this.collection.at(i)); i++) {
+      options.push({
+        value: m.getKey(),
+        content: this.modelValue(m)
+      });
+    }
+
+    this.destroyComponents();
+    this.createComponent({ name: 'select', components: options });
+    this.render();
+  },
+  modelValue: function(record) {
+    throw new Error('Not Implemented');
+  }
 });
