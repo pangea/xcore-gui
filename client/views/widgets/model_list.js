@@ -43,36 +43,42 @@ enyo.kind({
   ],
   newButton: {kind: 'onyx.Button', method: 'newItem', content: "New", classes: 'text'},
   newItem: function() {
-    throw new NotImplementedError("ModelLists must implement the newItem method");
+    throw new Error("ModelLists must implement the newItem method");
   },
+  /**
+   * setupFetch allows subclasses to add additional information to the options
+   * passed into the collection's fetch method.
+   *
+   * @param {Object} options the options passed into collection.fetch()
+   */
+  setupFetch: enyo.nop,
   create: function () {
     var self = this,
         scrimZIndex = 999,
         hideScrim = function() {
           self.$.blocker.hideAtZIndex(scrimZIndex);
+        },
+        fetchOptions = {
+          success: hideScrim,
+          fail: hideScrim
         };
 
     // Ensure the collection is in a form we can use
-    switch(typeof(self.collection)) {
-      // collection is the name of a kind
-      case "string":
-        self.set('collection', enyo.createFromKind(self.collection));
-        break;
-
-      // collection is the constructor for a kind
-      case "function":
-        self.set('collection', new self.collection());
-        break;
+    if(enyo.isString(this.collection)) {
+      this.collection = enyo.getPath(this.collection);
     }
 
-    self.collection.fetch({
-      success: hideScrim,
-      fail: hideScrim
-    });
+    if(enyo.isFunction(this.collection)) {
+      this.collection = new this.collection();
+    }
 
-    self.inherited(arguments);
+    this.setupFetch(fetchOptions);
 
-    self.createComponent({
+    this.collection.fetch(fetchOptions);
+
+    this.inherited(arguments);
+
+    this.createComponent({
       name: 'blocker',
       kind: 'onyx.Scrim',
       classes: 'onyx-scrim enyo-fit onyx-scrim-translucent',
@@ -85,9 +91,9 @@ enyo.kind({
       ]
     });
 
-    self.$.blocker.showAtZIndex(scrimZIndex);
+    this.$.blocker.showAtZIndex(scrimZIndex);
 
-    self.setupToolbarActions();
+    this.setupToolbarActions();
   },
   setupToolbarActions: function() {
     this.newButton.context = this;
