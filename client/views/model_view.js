@@ -12,7 +12,18 @@
 		  onStatusAlert: ''
 	  },
     components: [
-      { name: 'modelTable', kind: 'enyo.Table', classes: 'model-table' }
+      { name: 'modelTable', kind: 'enyo.Table', classes: 'model-table' },
+      { name: 'blocker',
+        kind: 'onyx.Scrim',
+        classes: 'onyx-scrim enyo-fit onyx-scrim-translucent',
+        components: [
+          { kind: 'XV.FontAwesomeIcon',
+            icon: 'spinner',
+            classes: 'fa-spin',
+            style: 'color: #636363'
+          }
+        ]
+      }
     ],
     leftButtons: [
 			{kind: 'onyx.Button', method: 'goBack', classes: 'fa fa-reply'}
@@ -22,19 +33,6 @@
     create: enyo.inherit(function(sup) {
       return function() {
         sup.apply(this, arguments);
-
-        this.createComponent({
-          name: 'blocker',
-          kind: 'onyx.Scrim',
-          classes: 'onyx-scrim enyo-fit onyx-scrim-translucent',
-          components: [
-            { kind: 'XV.FontAwesomeIcon',
-              icon: 'spinner',
-              classes: 'fa-spin',
-              style: 'color: #636363'
-            }
-          ]
-        });
 
         this.setupRows();
 
@@ -56,8 +54,11 @@
       _.each(rightButtons, applyButtons.bind(this, 'Right'));
     },
     setupRows: function() {
-      for(var i = 0, l = Math.ceil(this.fields.length/this.columns); i < l; i++) {
-        var row = this.fields.slice(i*3, (i+1)*3);
+      var fields = this.fields,
+          cols = this.columns;
+
+      for(var i = 0, l = Math.ceil(fields.length/cols); i < l; i++) {
+        var row = fields.slice(i*cols, (i+1)*cols);
 
         this.setupRow(row);
       }
@@ -155,7 +156,6 @@
       var values = {};
 
       enyo.forEach(this.fields, function(field) {
-        console.log(field.name);
         // Normally, doing this would be considered bad practice (it still kinda is)
         // but I think it's okay in this case since we can actually reasonably
         // assume the structure of modelTable
