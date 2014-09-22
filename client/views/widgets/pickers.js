@@ -144,6 +144,10 @@ enyo.kind({
         this.collection = new this.collection();
       }
 
+      // We need to alter values going to/from the input
+      // We can't just add a new binding, so, instead, we edit the existing one
+      this.bindings[0].transform = 'alterValue';
+
       sup.apply(this, arguments);
 
       this.collection.fetch({
@@ -167,5 +171,20 @@ enyo.kind({
   },
   modelValue: function(record) {
     throw new Error('Not Implemented');
+  },
+  alterValue: function(value, dir) {
+    var newVal;
+    if(dir === 'target') {
+      // when pulling the value from the target, we need to transform it into
+      // a model
+      newVal = this.collection.filter(function(record) {
+        return record.getKey() == value;
+      })[0];
+    } else {
+      // otherwise, we just need to grab the model's key
+      newVal = value.getKey();
+    }
+
+    return newVal;
   }
 });

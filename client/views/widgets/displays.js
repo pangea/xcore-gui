@@ -165,7 +165,14 @@ enyo.kind({
 
       if(this.model === null) {
         if(this.value) {
-          this.valueChanged();
+          if(this.value instanceof XM.Model) {
+            // in this case, the bindings prevent the model value from being
+            // displayed
+            this.bindings = [];
+            this.set('model', this.value);
+          } else {
+            this.valueChanged();
+          }
         }
       } else {
         this.modelChanged();

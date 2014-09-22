@@ -143,6 +143,9 @@
         components.push({ value: field.name, kind: 'XV.AttributeCell' });
 
         field.value = this.model.get(field.name);
+        if(field.value instanceof enyo.Model) {
+          field.model = field.value;
+        }
         components.push(field);
       }, this);
 
@@ -153,14 +156,15 @@
       });
     },
 	  getFormValues: function() {
-      var values = {};
+      var values = {},
+          table = this.$.modelTable;
 
       enyo.forEach(this.fields, function(field) {
         // Normally, doing this would be considered bad practice (it still kinda is)
         // but I think it's okay in this case since we can actually reasonably
         // assume the structure of modelTable
-        values[field.name] = this.$.modelTable.$[field.name].value;
-      }, this);
+        values[field.name] = table.$[field.name].value;
+      });
 
       return values;
 	  },
@@ -190,7 +194,7 @@
           that.doStatusAlert({
             type: 'danger',
             title: 'Save Failed',
-            content: 'An error prevented this object from saving.',
+            content: res.message,
             stay: false
           });
         }
