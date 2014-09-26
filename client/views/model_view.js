@@ -172,7 +172,8 @@
 		  var that = this,
           user = xCore.currentUser(),
           values = this.getFormValues(),
-          scrimZIndex = 999;
+          scrimZIndex = 999,
+          oldVals = enyo.clone(this.model.attributes);
 
       // Create Audit Log entry?
       // should probably be done on the server.
@@ -188,15 +189,15 @@
 		      that.goBack();
         },
         fail: function(inEvent, opts, res) {
-          console.log(arguments);
           that.$.blocker.hideAtZIndex(scrimZIndex);
-          // TODO: Better error message
           that.doStatusAlert({
             type: 'danger',
             title: 'Save Failed',
             content: res.message,
             stay: false
           });
+          // not using setObject to prevent bindings from resetting the form
+          that.model.attributes = oldVals;
         }
       });
 	  }
