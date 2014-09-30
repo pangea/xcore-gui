@@ -182,7 +182,13 @@ enyo.kind({
     };
   }),
   modelChanged: function() {
-    throw new Error('Not Implemented');
+    // provide a sane default
+    if(this.model.natrualKey) {
+      this.set('content', this.model.getKey());
+    } else {
+      // You will need to subkind in order to use models without natrual keys
+      throw new Error('Model provided does not have a natural key.');
+    }
   },
   valueChanged: function() {
     this.addSpinner();
