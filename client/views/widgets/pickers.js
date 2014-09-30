@@ -144,10 +144,6 @@ enyo.kind({
         this.collection = new this.collection();
       }
 
-      // We need to alter values going to/from the input
-      // We can't just add a new binding, so, instead, we edit the existing one
-      this.bindings[0].transform = 'alterValue';
-
       sup.apply(this, arguments);
 
       this.collection.fetch({
@@ -170,21 +166,60 @@ enyo.kind({
     this.render();
   },
   modelValue: function(record) {
-    throw new Error('Not Implemented');
-  },
+    // provide a sane default
+    if(record.naturalKey) {
+      return record.getKey();
+    } else {
+      // You will need to subkind in order to use models without natrual keys
+      throw new Error('Record does not have a natural key.');
+    }
+  }
+});
+
+enyo.kind({
+  name: 'XV.RelationPickerCell',
+  kind: 'XV.InputCell',
+  components: [
+    { name: 'input', kind: 'XV.RelationPicker'}
+  ]
+});
+
+enyo.kind({/** @lends XV.NestedRelationPicker */
+  name: 'XV.NestedRelationPicker',
+  kind: 'XV.RelationPicker',
+  /**
+   * @constructor
+   * A Nested Relation Picker maintains an instance of XM.Model as its `value`.
+   * This requires special processing during the binding to provide two-way
+   * binding.
+   */
+  create: enyo.inherit(function(sup) {
+    return function() {
+      // We need to alter values going to/from the input
+      // We can't just add a new binding, so, instead, we edit the existing one
+      this.bindings[0].transform = 'alterValue';
+
+      sup.apply(this, arguments);
+    };
+  }),
   alterValue: function(value, dir) {
-    var newVal;
     if(dir === 'target') {
       // when pulling the value from the target, we need to transform it into
       // a model
-      newVal = this.collection.filter(function(record) {
+      return this.collection.filter(function(record) {
         return record.getKey() == value;
       })[0];
     } else {
       // otherwise, we just need to grab the model's key
-      newVal = value.getKey();
+      return value.getKey();
     }
-
-    return newVal;
   }
+});
+
+enyo.kind({
+  name: 'XV.NestedRelationPickerCell',
+  kind: 'XV.InputCell',
+  components: [
+    { name: 'input', kind: 'XV.NestedRelationPicker'}
+  ]
 });
