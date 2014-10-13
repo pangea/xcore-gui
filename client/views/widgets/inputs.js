@@ -60,6 +60,25 @@ enyo.kind({
   ]
 });
 
+/*** Integer Input Field ***/
+enyo.kind({
+  name: 'XV.NumberInput',
+  kind: 'XV.InputField',
+  components: [{
+    name: 'input',
+    kind: 'onyx.Input',
+    type: 'Number'
+  }]
+});
+
+enyo.kind({
+  name: 'XV.NumberInputCell',
+  kind: 'XV.InputCell',
+  components: [
+    { name: 'input', kind: 'XV.NumberInput' }
+  ]
+});
+
 /*** ZipCode Input Field ***/
 enyo.kind({
 	name: 'XV.ZipCodeInput',
@@ -104,5 +123,28 @@ enyo.kind({
   kind: 'XV.InputCell',
   components: [
     { name: 'input', kind: 'XV.TelephoneInput' }
+  ]
+});
+
+/*** Date Input Field ***/
+// define ilib as undefined to fix some date picker issues
+window.ilib = undefined;
+enyo.kind({
+  name: 'XV.DateInput',
+  kind: 'XV.InputField',
+  components: [
+    { name: 'input',
+      kind: 'onyx.DatePicker',
+      // fixes another date picker issue when not using ilib
+      localeInfo: {}
+    }
+  ]
+});
+
+enyo.kind({
+  name: 'XV.DateInputCell',
+  kind: 'XV.InputCell',
+  components: [
+    { name: 'input', kind: 'XV.DateInput' }
   ]
 });
