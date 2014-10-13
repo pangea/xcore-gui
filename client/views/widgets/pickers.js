@@ -211,7 +211,7 @@ enyo.kind({/** @lends XV.NestedRelationPicker */
       })[0];
     } else {
       // otherwise, we just need to grab the model's key
-      return value.getKey();
+      return value && value.getKey();
     }
   }
 });
