@@ -7,5 +7,6 @@ enyo.depends(
 	"inputs.js",
 	"pickers.js",
 	"select_relation.js",
-  "font_awesome_icon.js"
+  "font_awesome_icon.js",
+  "back_button.js"
 );

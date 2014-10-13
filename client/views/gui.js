@@ -14,7 +14,8 @@ enyo.kind({
     onLoadWorkspace: "loadWorkspace",
     onStatusBarItemAdded: 'resizeGui',
     onNotificationRendered: 'resizeGui',
-		onStatusAlert: "addStatusBarAlertAction"
+    onStatusAlert: "addStatusBarAlertAction",
+    onGoBack: 'goBack'
   },
   components:[
     {kind: "onyx.Toolbar", name: "header", layoutKind: "FittableHeaderLayout", components: [
@@ -35,7 +36,7 @@ enyo.kind({
         {kind: "XV.ExtensionSubList", name: "extensionSubList"}
       ]},
       {kind: "FittableRows", fit: true, components: [
-        {kind: "XV.Workspace", name: "workspace"},
+        {kind: "XV.Workspace", name: "workspace", fit: true},
         {kind: "XV.StatusBar", name: "statusBar"}
       ]}
     ]}
@@ -69,6 +70,9 @@ enyo.kind({
     
     this.$.workspace.destroyClientControls();
     this.$.extensionSubList.destroyClientControls();
+    this.clearWorkspaceToolbar();
+
+    this.$.workspace.clearHistory();
     this.currentExtension.loadSubList(this.$.extensionSubList);
   },
   loadWorkspace: function(inEvent, workspace) {
@@ -118,5 +122,13 @@ enyo.kind({
   addStatusBarAlertAction: function(inEvent, alert) {
     this.$.statusBar.addStatusBarAlertAction(inEvent, alert);
     return true;
+  },
+  hasHistory: function() {
+    return this.$.workspace.hasHistory();
+  },
+  goBack: function() {
+    this.clearWorkspaceToolbar();
+    this.$.workspace.destroyClientControls();
+    this.$.workspace.goBack();
   }
 });
