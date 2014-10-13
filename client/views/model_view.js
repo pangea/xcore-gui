@@ -26,7 +26,7 @@
       }
     ],
     leftButtons: [
-			{kind: 'onyx.Button', method: 'goBack', classes: 'fa fa-reply'}
+			{ kind: 'XV.BackButton' }
     ],
 		centerButtons: [],
     rightButtons: [],
