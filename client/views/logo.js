@@ -4,7 +4,7 @@ enyo.kind({
     onLogoLoaded: ""
   },
   components: [
-    {kind: "enyo.Image", classes: "logo", onload: "logoLoaded", src: "/images/xcore-gui/logo.png", style: "vertical-align: middle"}
+    {kind: "enyo.Image", classes: "logo", onload: "logoLoaded", src: "/xcore-gui/logo.png", style: "vertical-align: middle"}
   ],
   logoLoaded: function () {
     this.doLogoLoaded();
