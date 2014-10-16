@@ -6,8 +6,8 @@
 
 enyo.kind({
   name: "XV.Gui",
-  kind: "XV.GuiInterface",
-  fit: true,
+  kind: "enyo.Scroller",
+  fit: false,
   handlers: {
     onLogoLoaded: "resizeGui",
     onExtensionSelect: "extensionSelected",
@@ -17,10 +17,20 @@ enyo.kind({
 		onStatusAlert: "addStatusBarAlertAction"
   },
   components:[
-    {kind: "onyx.Toolbar", name: "header", layoutKind: "FittableHeaderLayout", components: [
-      {kind: "XV.Logo", name: "logo"},
+    // TODO find classes attached to 'name: "header"' and remove
+    // then add 'name: "header"' to Navbar vvv
+    {kind: "bootstrap.Navbar", brand: "Xcore", inverse: true, fixed: true, sidebar: true, navbarComponents: [
       {kind: "XV.Search", name: "search"},
       {kind: "XV.UserNav", name: "userNav"}
+    ]},
+    {kind: "bootstrap.Container", fluid: true, components: [
+      {kind: "bootstrap.Row", classes: "row-offcanvas row-offcanvas-left", components: [
+        {tag: "div", classes: "col-md-2 col-sm-3 col-xs-5 sidebar sidebar-offcanvas", components:[
+          {kind: "XV.ExtensionSelector", name: "extensionSelector"},
+        ]},
+        {tag: "div", classes: "col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main", components: [
+        ]}
+      ]}
     ]},
     {kind: "FittableColumns", components: [
       {kind: "FittableRows", components: [
@@ -40,7 +50,7 @@ enyo.kind({
       ]}
     ]}
   ],
-  extensions: null,  
+  extensions: null,
   currentExtension: null,
   create: function() {
     // Check to make sure font awesome hasn't already been loaded
@@ -66,7 +76,7 @@ enyo.kind({
   },
   extensionSelected: function (inEvent, name) {
     this.currentExtension = this.extensions[name];
-    
+
     this.$.workspace.destroyClientControls();
     this.$.extensionSubList.destroyClientControls();
     this.currentExtension.loadSubList(this.$.extensionSubList);
@@ -110,7 +120,7 @@ enyo.kind({
   addStatusBarIcon: function (action) {
     this.$.statusBar.addStatusBarIcon(action);
     return true;
-  },  
+  },
   setLogoImage: function (url) {
     this.$.logo.setImage(url);
     return true;

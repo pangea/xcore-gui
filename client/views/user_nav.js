@@ -1,15 +1,12 @@
 enyo.kind({
   name: "XV.UserNav",
+  kind: "bootstrap.NavbarNav",
+  float: "right",
   components: [
-    {kind: 'onyx.MenuDecorator', classes: "user-nav", components: [
-      {content: "User Menu"},
-      { name: 'userMenu',
-        kind: 'onyx.Menu',
-        ontap: 'handleNavSelect',
-        components: [
-          {content: 'Logout', value: 'logout', method: 'logout'}
-        ]
-      }
+    {kind: "bootstrap.NavDropdown", text: "User Menu", href: "#", components: [
+      {kind: "bootstrap.DropdownMenu", name: "userMenu", ontap: 'handleNavSelect', components: [
+        {text: "Logout", href: "logout"}
+      ]}
     ]}
   ],
   addUserNavAction: function (action) {
@@ -18,8 +15,10 @@ enyo.kind({
   },
   handleNavSelect: function(inSender, inEvent) {
     var tapped  = inEvent.originator,
-        method  = tapped.method,
+        method  = tapped.href,
         context = tapped.context;
+
+    inEvent.preventDefault();
 
     if(context) {
       context[method].call(context);
